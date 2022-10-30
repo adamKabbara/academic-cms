@@ -100,6 +100,9 @@ hr {
   .topic-image {
     height: 300px;
   }
+  #post-title {
+    font-size: 34px;
+  }
 }
 
 #main {
