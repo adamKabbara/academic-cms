@@ -10,9 +10,7 @@ export default function Header() {
             <img
               id="main-icon"
               src="/icons/icon4.svg"
-              // src="https://flowbite.com/docs/images/logo.svg"
               class="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
             />
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Academic CMS
