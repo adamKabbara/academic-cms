@@ -75,12 +75,37 @@ main {
   opacity: 0.5;
 }
 
-#test {
-  color: red;
-}
 hr {
   max-width: 80%;
 }
+
+/* SLUG PAGES //////////////////////////////////////////////////////////////////////// */
+
+#slug-main-container {
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.topic-image {
+  width: 700px;
+  height: 500px;
+}
+@media only screen and (max-width: 580px) {
+  .topic-image {
+    height: 400px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .topic-image {
+    height: 300px;
+  }
+}
+
+#main {
+  width: 100%;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -88,5 +113,11 @@ hr {
   body {
     color: white;
     background: #1e293b;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #main-icon {
+    height: 40px;
   }
 }
