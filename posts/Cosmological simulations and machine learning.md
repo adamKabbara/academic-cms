@@ -2,6 +2,7 @@
 title: Cosmological simulations and machine learning
 date: 'June 5, 2022'
 thumbnail: /images/image1.jpg
+excerpt: It was a simple tip of the hat. Grace didn't think that anyone else besides her had even noticed it.
 ---
 
 # Phocen nunc pauca inventa suae belli medius

@@ -1,7 +1,8 @@
 ---
 title: Mental effects of remote work
-date: 'June 5, 2022'
+date: 'Feb 2, 2018'
 thumbnail: /images/image3.jpg
+excerpt: It was always the Monday mornings. It never seemed to happen on Tuesday morning, Wednesday morning, or any other morning during the week.
 ---
 
 # Succedere conplexi humi undis volenti occuluit serpens

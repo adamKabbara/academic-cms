@@ -3,13 +3,18 @@ import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
 import Post from '../components/Post'
+import Footer from '../components/Footer'
 
 export default function Home({ posts }) {
   return (
     <div>
       <Head></Head>
 
-      <div id="main-content">
+      <div id="main-content" className="">
+        <h1 className="text-2xl pb-5 pt-2  font-bold m-auto">
+          Latest Research
+        </h1>
+        <hr className="pb-5 w-96 m-auto" />
         <div className="posts">
           {posts.map((post, index) => {
             return <Post post={post} key={post.frontmatter.title} />

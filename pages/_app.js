@@ -1,13 +1,19 @@
-import Header from '../components/Header';
-import '../styles/globals.css';
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <div id="paper">
       <Header></Header>
-      <Component {...pageProps} />
-    </>
-  );
+      <main>
+        <Component {...pageProps} />
+      </main>
+      <Footer
+        style={{ position: 'absolute', bottom: 0, width: '100%' }}
+      ></Footer>
+    </div>
+  )
 }
 
-export default MyApp;
+export default MyApp

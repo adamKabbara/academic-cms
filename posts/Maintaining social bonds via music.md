@@ -1,7 +1,8 @@
 ---
 title: Maintaining social bonds via music
-date: 'June 5, 2022'
+date: 'Nov 10, 2004'
 thumbnail: /images/image2.jpg
+excerpt: The blinking light caught her attention. She thought about it a bit and couldn't remember ever noticing it before.
 ---
 
 # Miratur et duxit

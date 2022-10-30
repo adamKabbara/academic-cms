@@ -1,7 +1,8 @@
 ---
 title: Use of AI in robotics
-date: 'June 5, 2022'
+date: 'May 20, 2021'
 thumbnail: /images/image4.jpg
+excerpt: There wasn't a whole lot more that could be done. It had become a wait-and-see situation with the final results no longer in her control.
 ---
 
 # Adspicias mei quos venientis cuncta
