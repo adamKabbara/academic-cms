@@ -1,6 +1,7 @@
 ---
 title: Cosmological simulations and machine learning
 date: 'June 5, 2022'
+thumbnail: /images/image1.jpg
 ---
 
 # Phocen nunc pauca inventa suae belli medius

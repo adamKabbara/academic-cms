@@ -1,6 +1,7 @@
 ---
 title: Use of AI in robotics
 date: 'June 5, 2022'
+thumbnail: /images/image4.jpg
 ---
 
 # Adspicias mei quos venientis cuncta

@@ -1,6 +1,7 @@
 ---
 title: Maintaining social bonds via music
 date: 'June 5, 2022'
+thumbnail: /images/image2.jpg
 ---
 
 # Miratur et duxit

@@ -1,6 +1,7 @@
 ---
 title: Mental effects of remote work
 date: 'June 5, 2022'
+thumbnail: /images/image3.jpg
 ---
 
 # Succedere conplexi humi undis volenti occuluit serpens
