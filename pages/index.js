@@ -4,12 +4,13 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import Post from '../components/Post'
 import Footer from '../components/Footer'
+import { useState } from 'react'
 
 export default function Home({ posts }) {
+  const [isCollapsed, setIsCollapsed] = useState(true)
+
   return (
     <div>
-      <Head></Head>
-
       <div id="main-content" className="">
         <h1 className="text-2xl pb-5 pt-2  font-bold m-auto">
           Latest Research
