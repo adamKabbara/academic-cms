@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
+import { assetPrefix } from '../next.config'
 
 export default function Header() {
   const [isToggled, setIsToggled] = useState(false)
@@ -16,16 +17,14 @@ export default function Header() {
     toggleMenu(menuRef)
   }, [isToggled])
 
+  const imageLink = assetPrefix + '/icons/icon4.svg'
+
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 mb-7">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link href={`/`}>
           <a href="" className="flex items-center">
-            <img
-              id="main-icon"
-              src="/icons/icon4.svg"
-              className="mr-3 h-6 sm:h-9"
-            />
+            <img id="main-icon" src={imageLink} className="mr-3 h-6 sm:h-9" />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Academic CMS
             </span>
