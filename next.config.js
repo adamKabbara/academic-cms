@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-  // swcMinify: true,
+  assetPrefix: '/academic-cms/',
 }
 
 module.exports = nextConfig
