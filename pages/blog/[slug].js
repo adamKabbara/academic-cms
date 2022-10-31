@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
-import { assetPrefix } from '../next.config'
 
 export default function PostPage({
   frontmatter: { title, date, thumbnail },
@@ -17,7 +16,7 @@ export default function PostPage({
         </h1>
         <div className=" leading-9 text-slate-500 text-lg">{date}</div>
         <img
-          src={assetPrefix + thumbnail}
+          src={'/academic-cms' + thumbnail}
           alt="topic picture"
           className="m-auto  object-cover pt-10 pb-10  topic-image"
         />

@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import { assetPrefix } from '../next.config'
 
 export default function Post({ post }) {
   return (
@@ -10,7 +9,7 @@ export default function Post({ post }) {
           <a>
             <img
               className="thumbnail"
-              src={assetPrefix + post.frontmatter.thumbnail}
+              src={'/academic-cms' + post.frontmatter.thumbnail}
               alt="thumbnail"
             />
           </a>

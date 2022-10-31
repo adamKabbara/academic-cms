@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
-import { assetPrefix } from '../next.config'
 
 export default function Header() {
   const [isToggled, setIsToggled] = useState(false)
@@ -17,7 +16,7 @@ export default function Header() {
     toggleMenu(menuRef)
   }, [isToggled])
 
-  const imageLink = assetPrefix + '/icons/icon4.svg'
+  const imageLink = '/academic-cms' + '/icons/icon4.svg'
 
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 mb-7">
