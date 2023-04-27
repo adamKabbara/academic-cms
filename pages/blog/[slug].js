@@ -2,12 +2,15 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export default function PostPage({
   frontmatter: { title, date, thumbnail },
   slug,
   content,
 }) {
+  const { isAuthenticated } = useAuth0()
+
   return (
     <>
       <div className="p-5 pt-1" id="slug-main-container">
@@ -16,7 +19,7 @@ export default function PostPage({
         </h1>
         <div className=" leading-9 text-slate-500 text-lg">{date}</div>
         <img
-          src={'/academic-cms' + thumbnail}
+          src={/* '/academic-cms' + */ '' + thumbnail}
           alt="topic picture"
           className="m-auto  object-cover pt-10 pb-10  topic-image"
         />
