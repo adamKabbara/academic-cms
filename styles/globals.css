@@ -21,6 +21,10 @@ a {
   box-sizing: border-box;
 }
 
+.test {
+  color: red;
+  /* width: 5rem; */
+}
 :root,
 body,
 #__next {
@@ -39,7 +43,7 @@ body,
 }
 
 main {
-  display: flex;
+  /* display: flex; */
   flex: 1;
   flex-direction: column;
   background: #1e293b;
@@ -86,7 +90,7 @@ hr {
 #slug-main-container {
   max-width: 900px;
   margin: auto;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
 }
 
 .topic-image {

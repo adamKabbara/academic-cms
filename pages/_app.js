@@ -12,15 +12,15 @@ function MyApp({ Component, pageProps }) {
         redirect_uri: 'http://localhost:3000/',
       }}
     >
-      <div id="paper">
-        <Header></Header>
-        <main>
-          <Component {...pageProps} />
-        </main>
-        <Footer
-          style={{ position: 'absolute', bottom: 0, width: '100%' }}
-        ></Footer>
-      </div>
+      {/* <div id="paper"> */}
+      <Header></Header>
+      <main>
+        <Component {...pageProps} />
+      </main>
+      <Footer
+        style={{ position: 'absolute', bottom: 0, width: '100%' }}
+      ></Footer>
+      {/* </div> */}
     </Auth0Provider>
   )
 }
