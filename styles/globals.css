@@ -108,7 +108,9 @@ hr {
     font-size: 34px;
   }
 }
-
+main {
+  padding: 0 10px 0 10px;
+}
 #main {
   width: 100%;
 }
