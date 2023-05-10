@@ -8,7 +8,7 @@ function Create() {
 
     var data = new FormData()
     data.append('file', file)
-    console.log(data.get('file'))
+
     fetch('/api/convert', {
       method: 'POST',
       body: data,
