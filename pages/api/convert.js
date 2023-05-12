@@ -16,12 +16,12 @@ export default function handler(req, res) {
   const form = new formidable.IncomingForm()
 
   form.parse(req, async function (err, fields, files) {
-    convertToMarkdown(files.file)
+    convertToMarkdown(files.file, fields.author)
     return res.status(201).send('')
   })
 }
 
-const convertToMarkdown = (file) => {
+const convertToMarkdown = async (file, author) => {
   const wordsApi = new WordsApi(
     'af80956f-7ce5-4f2e-a273-b1ca72654d9b',
     '09de9df66660ec7e361903022078e08d'
@@ -34,20 +34,28 @@ const convertToMarkdown = (file) => {
     format: 'md',
   })
 
-  wordsApi.convertDocument(convertRequest).then((convertRequestResult) => {
-    fs.writeFileSync('testing files/new file.md', convertRequestResult.body)
-  })
+  const convertedFile = await wordsApi
+    .convertDocument(convertRequest)
+    .then((convertRequestResult) => {
+      saveFile(convertRequestResult.body, author)
+      fs.writeFileSync('testing files/new file.md', convertRequestResult.body)
+    })
 }
 
-const saveFile = async (file) => {
-  const data = fs.readFileSync(file.filepath)
-  fs.writeFileSync(
-    path.join(
-      __dirname,
-      `../../../../testing files/${file.originalFilename}.docx`
-    ),
-    data
-  )
+// saveFile(convertRequestResult.body, author)
+const saveFile = async (file, author) => {
+  // const data = fs.readFileSync(file.filepath)
+  // fs.writeFileSync(
+  //   path.join(
+  //     __dirname,
+  //     `../../../../testing files/${file.originalFilename}.docx`
+  //   ),
+  //   data
+  // )
+  // await fs.unlinkSync(file.filepath)
 
-  await fs.unlinkSync(file.filepath)
+  fetch('http://localhost:3000/api/connectDB', {
+    method: 'POST',
+    body: JSON.stringify({ file, author }),
+  })
 }

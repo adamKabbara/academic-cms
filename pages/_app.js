@@ -12,7 +12,6 @@ function MyApp({ Component, pageProps }) {
         redirect_uri: 'http://localhost:3000/',
       }}
     >
-      {/* <div id="paper"> */}
       <Header></Header>
       <main>
         <Component {...pageProps} />

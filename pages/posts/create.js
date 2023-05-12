@@ -2,11 +2,17 @@ import { useEffect, useRef } from 'react'
 
 function Create() {
   const fileInput = useRef(null)
+  const firstNameInput = useRef('')
+  const lastNameInput = useRef('')
 
   const uploadFile = () => {
     const file = fileInput.current.files[0]
 
     var data = new FormData()
+    data.append(
+      'author',
+      `${firstNameInput.current.value} ${lastNameInput.current.value}`
+    )
     data.append('file', file)
 
     fetch('/api/convert', {
@@ -41,6 +47,7 @@ function Create() {
             id="grid-first-name"
             type="text"
             placeholder="Jane"
+            ref={firstNameInput}
           />
         </div>
         <div className="w-full  px-3 mb-6 md:mb-0 mt-6">
@@ -55,6 +62,7 @@ function Create() {
             id="grid-last-name"
             type="text"
             placeholder="Doe"
+            ref={lastNameInput}
           />
         </div>
 
