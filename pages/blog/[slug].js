@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
 import { useAuth0 } from '@auth0/auth0-react'
+import { connectDB } from '../../utils/mongoDB'
 
 export default function PostPage({
   frontmatter: { title, date, thumbnail },
@@ -39,6 +40,9 @@ export default function PostPage({
 }
 
 export async function getStaticPaths() {
+  const client = connectDB()
+  // client.db('Project0').collection('posts').find()
+
   const files = fs.readdirSync(path.join('posts'))
 
   const paths = files.map((filename) => ({
