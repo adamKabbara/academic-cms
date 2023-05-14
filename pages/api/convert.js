@@ -16,12 +16,14 @@ export default function handler(req, res) {
   const form = new formidable.IncomingForm()
 
   form.parse(req, async function (err, fields, files) {
-    convertToMarkdown(files.file, fields.author)
+    const thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
+
+    convertToMarkdown(files.file, fields.author, Buffer.from(thumbnailBody))
     return res.status(201).send('')
   })
 }
 
-const convertToMarkdown = async (file, author) => {
+const convertToMarkdown = async (file, author, thumbnail) => {
   const wordsApi = new WordsApi(
     'af80956f-7ce5-4f2e-a273-b1ca72654d9b',
     '09de9df66660ec7e361903022078e08d'
@@ -37,13 +39,13 @@ const convertToMarkdown = async (file, author) => {
   const convertedFile = await wordsApi
     .convertDocument(convertRequest)
     .then((convertRequestResult) => {
-      saveFile(convertRequestResult.body, author)
-      fs.writeFileSync('testing files/new file.md', convertRequestResult.body)
+      saveFile(convertRequestResult.body, author, thumbnail)
+      // fs.writeFileSync('testing files/new file.md', convertRequestResult.body)
     })
 }
 
 // saveFile(convertRequestResult.body, author)
-const saveFile = async (file, author) => {
+const saveFile = async (file, author, thumbnail) => {
   // const data = fs.readFileSync(file.filepath)
   // fs.writeFileSync(
   //   path.join(
@@ -54,8 +56,8 @@ const saveFile = async (file, author) => {
   // )
   // await fs.unlinkSync(file.filepath)
 
-  fetch('http://localhost:3000/api/connectDB', {
+  fetch('http://localhost:3000/api/addPost', {
     method: 'POST',
-    body: JSON.stringify({ file, author }),
+    body: JSON.stringify({ file, author, thumbnail }),
   })
 }

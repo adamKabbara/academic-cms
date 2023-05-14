@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
 import { useAuth0 } from '@auth0/auth0-react'
-import { connectDB } from '../../utils/mongoDB'
+import { connectDB } from '../../utils/connectDB'
 
 export default function PostPage({
   frontmatter: { title, date, thumbnail },

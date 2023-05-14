@@ -2,11 +2,13 @@ import { useEffect, useRef } from 'react'
 
 function Create() {
   const fileInput = useRef(null)
+  const thumbnailInput = useRef(null)
   const firstNameInput = useRef('')
   const lastNameInput = useRef('')
 
   const uploadFile = () => {
     const file = fileInput.current.files[0]
+    const thumbnail = thumbnailInput.current.files[0]
 
     var data = new FormData()
     data.append(
@@ -14,15 +16,12 @@ function Create() {
       `${firstNameInput.current.value} ${lastNameInput.current.value}`
     )
     data.append('file', file)
+    data.append('thumbnail', thumbnail)
 
     fetch('/api/convert', {
       method: 'POST',
       body: data,
     })
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   console.log(data)
-    // })
   }
 
   return (
@@ -34,7 +33,6 @@ function Create() {
           uploadFile()
         }}
       >
-        {/* <div class="flex flex-wrap -mx-3 mb-6"> */}
         <div className="w-full px-3 mb-6 md:mb-0">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -43,7 +41,7 @@ function Create() {
             First Name
           </label>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white min-w-fit mt-3"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white min-w-fit mt-3"
             id="grid-first-name"
             type="text"
             placeholder="Jane"
@@ -58,7 +56,7 @@ function Create() {
             Last Name
           </label>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-3 mt-3"
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-3 mt-3"
             id="grid-last-name"
             type="text"
             placeholder="Doe"
@@ -75,7 +73,7 @@ function Create() {
           </label>
           <div className="relative ">
             <select
-              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded  focus:outline-none focus:bg-white focus:border-gray-500 mt-3"
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-1 px-4 pr-8 rounded  focus:outline-none focus:bg-white focus:border-gray-500 mt-3"
               id="grid-state"
             >
               <option>Information Technology</option>
@@ -99,13 +97,28 @@ function Create() {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             htmlFor="file_input"
           >
-            Upload file
+            Upload file (.docx)
           </label>
           <input
-            className="  block w-full text-sm text-gray-900 border border-gray-300 rounded bg-gray-200 text-gray-700 border border-gray-200 rounded  leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-3 mt-3"
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded bg-gray-200 text-gray-700 border border-gray-200 rounded  leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-3 mt-3"
             id="uploadedFile"
             type="file"
             ref={fileInput}
+            required
+          />
+        </div>
+        <div className="w-full  px-3 mb-6 md:mb-0 mt-6">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="file_input"
+          >
+            Upload Thumbnail (.JPG, .PNG)
+          </label>
+          <input
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded bg-gray-200 text-gray-700 border border-gray-200 rounded  leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-3 mt-3 "
+            id="uploadedFile"
+            type="file"
+            ref={thumbnailInput}
             required
           />
         </div>
