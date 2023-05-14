@@ -12,6 +12,9 @@ export default function handler(req, res) {
       file: fileBuffer.toString(),
       author: body.author,
       thumbnail: body.thumbnail,
+      topic: body.topic,
+      date: new Date().toLocaleDateString(),
+      excerpt: body.excerpt,
     }
 
     client

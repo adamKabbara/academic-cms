@@ -11,6 +11,12 @@ module.exports = {
       maxWidth: {
         260: '600px',
       },
+      colors: {
+        gray: {
+          1000: '#2B2E30',
+          1100: '#D9D2C9',
+        },
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

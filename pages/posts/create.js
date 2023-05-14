@@ -5,6 +5,8 @@ function Create() {
   const thumbnailInput = useRef(null)
   const firstNameInput = useRef('')
   const lastNameInput = useRef('')
+  const titleInput = useRef('')
+  const excerptInput = useRef('')
 
   const uploadFile = () => {
     const file = fileInput.current.files[0]
@@ -35,53 +37,59 @@ function Create() {
       >
         <div className="w-full px-3 mb-6 md:mb-0">
           <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            className="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
             htmlFor="grid-first-name"
           >
             First Name
           </label>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white min-w-fit mt-3"
-            id="grid-first-name"
+            className="appearance-none block w-full bg-gray-1000 text-gray-1100 border border-gray-600 rounded py-2 px-4 mb-3 leading-tight focus:outline-none  min-w-fit mt-3 focus:border-gray-500"
+            id="grid-first-name "
             type="text"
             placeholder="Jane"
             ref={firstNameInput}
+            required
           />
+          {/* rgb(217, 210, 201) */}
         </div>
         <div className="w-full  px-3 mb-6 md:mb-0 mt-6">
           <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            className="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
             htmlFor="grid-last-name"
           >
             Last Name
           </label>
           <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-3 mt-3"
+            className="appearance-none block w-full bg-gray-1000 text-gray-1100 border border-gray-600 rounded py-2 px-4 leading-tight focus:outline-none  focus:border-gray-500 mb-3 mt-3 required "
             id="grid-last-name"
             type="text"
             placeholder="Doe"
             ref={lastNameInput}
+            required
           />
         </div>
 
         <div className="w-full px-3 mb-6 md:mb-0 mt-6">
           <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            className="block uppercase tracking-wide text-xs font-bold mb-2"
             htmlFor="grid-state"
           >
-            Category
+            Topic
           </label>
           <div className="relative ">
             <select
-              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-1 px-4 pr-8 rounded  focus:outline-none focus:bg-white focus:border-gray-500 mt-3"
+              className="block appearance-none w-full  border border-gray-600 bg-gray-1000 text-gray-1100 py-1 px-4 pr-8 rounded  focus:outline-none  focus:border-gray-500 mt-3 "
               id="grid-state"
             >
+              <option value="" disabled selected>
+                Select your topic
+              </option>
               <option>Information Technology</option>
               <option>Law</option>
               <option>Engineering</option>
               <option>Medicine</option>
             </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-300">
               <svg
                 className="fill-current h-4 w-4"
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,13 +102,45 @@ function Create() {
         </div>
         <div className="w-full  px-3 mb-6 md:mb-0 mt-6">
           <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            className="block uppercase tracking-wide text-gray-00 text-xs font-bold mb-2"
+            htmlFor="grid-last-name"
+          >
+            Title
+          </label>
+          <input
+            className="appearance-none block w-full bg-form text-black border border-gray-600 bg-gray-1000 text-gray-1100 rounded py-2 px-4 leading-tight focus:outline-none mb-3 mt-3 focus:border-gray-500"
+            id="grid-last-name"
+            type="text"
+            placeholder="Use of AI in Robotics"
+            ref={titleInput}
+            required
+          />
+        </div>
+        <div className="w-full  px-3 mb-6 md:mb-0 mt-6">
+          <label
+            className="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
+            htmlFor="grid-last-name"
+          >
+            Excerpt
+          </label>
+          <input
+            className="appearance-none block w-full bg-gray-1000 text-gray-1100 border border-gray-600 rounded py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 mb-3 mt-3 focus:border-gray-500"
+            id="grid-last-name"
+            type="text"
+            placeholder="There wasn't a whole lot more that could be done. It had become a wait-and-see situation with the final results no longer in her control."
+            ref={excerptInput}
+            required
+          />
+        </div>
+        <div className="w-full  px-3 mb-6 md:mb-0 mt-6">
+          <label
+            className="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
             htmlFor="file_input"
           >
             Upload file (.docx)
           </label>
           <input
-            className="block w-full text-sm text-gray-900 border border-gray-300 rounded bg-gray-200 text-gray-700 border border-gray-200 rounded  leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-3 mt-3"
+            className="block w-full text-sm bg-gray-1000 text-gray-1100 border border-gray-300 rounded  text-gray-300 border border-gray-600 rounded  leading-tight focus:outline-none focus:border-gray-500 mb-3 mt-3 focus:border-gray-500"
             id="uploadedFile"
             type="file"
             ref={fileInput}
@@ -109,13 +149,13 @@ function Create() {
         </div>
         <div className="w-full  px-3 mb-6 md:mb-0 mt-6">
           <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            className="block uppercase tracking-wide text-gray-300 text-xs font-bold mb-2"
             htmlFor="file_input"
           >
             Upload Thumbnail (.JPG, .PNG)
           </label>
           <input
-            className="block w-full text-sm text-gray-900 border border-gray-300 rounded bg-gray-200 text-gray-700 border border-gray-200 rounded  leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-3 mt-3 "
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded bg-gray-1000 text-gray-1100 text-gray-300 border border-gray-600 rounded  leading-tight focus:outline-none focus:border-gray-500 mb-3 mt-3 focus:border-gray-500"
             id="uploadedFile"
             type="file"
             ref={thumbnailInput}
@@ -127,7 +167,7 @@ function Create() {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Sign In
+            Submit
           </button>
         </div>
       </form>

@@ -40,22 +40,11 @@ const convertToMarkdown = async (file, author, thumbnail) => {
     .convertDocument(convertRequest)
     .then((convertRequestResult) => {
       saveFile(convertRequestResult.body, author, thumbnail)
-      // fs.writeFileSync('testing files/new file.md', convertRequestResult.body)
     })
 }
 
 // saveFile(convertRequestResult.body, author)
 const saveFile = async (file, author, thumbnail) => {
-  // const data = fs.readFileSync(file.filepath)
-  // fs.writeFileSync(
-  //   path.join(
-  //     __dirname,
-  //     `../../../../testing files/${file.originalFilename}.docx`
-  //   ),
-  //   data
-  // )
-  // await fs.unlinkSync(file.filepath)
-
   fetch('http://localhost:3000/api/addPost', {
     method: 'POST',
     body: JSON.stringify({ file, author, thumbnail }),
