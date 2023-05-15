@@ -15,6 +15,7 @@ export default function handler(req, res) {
       topic: body.topic,
       date: new Date().toLocaleDateString(),
       excerpt: body.excerpt,
+      title: body.title,
     }
 
     client

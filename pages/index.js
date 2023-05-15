@@ -5,6 +5,8 @@ import matter from 'gray-matter'
 import Post from '../components/Post'
 import Footer from '../components/Footer'
 import { useState } from 'react'
+// import getPosts from './api/getPosts'
+import connectDB from '../utils/connectDB'
 
 export default function Home({ posts }) {
   const [isCollapsed, setIsCollapsed] = useState(true)
@@ -27,13 +29,37 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const files = fs.readdirSync(path.join('posts'))
+  const client = await connectDB()
 
+  const send = await client
+    .db('Project0')
+    .collection('posts')
+    .find({})
+    .toArray()
+
+  const posts2 = send.map((post) => {
+    const slug = post.topic
+
+    const meta = `---\ntitle: ${post.title}\ndate: '${post.date}'\nthumbnail: ${post.thumbnail.data}\nexcerpt: ${post.excerpt}\n---\n${post.file}`
+
+    const { data: frontmatter } = matter(meta)
+    return {
+      slug,
+      frontmatter,
+    }
+  })
+
+  // ---
+  // title: Cosmological simulations and machine learning
+  // date: 'June 5, 2022'
+  // thumbnail: /images/image1.jpg
+  // excerpt: It was a simple tip of the hat. Grace didn't think that anyone else besides her had even noticed it.
+  // ---
+
+  const files = fs.readdirSync(path.join('posts'))
   const posts = files.map((filename) => {
     const slug = filename.replace('.md', '')
-
     const meta = fs.readFileSync(path.join('posts', filename), 'utf-8')
-
     const { data: frontmatter } = matter(meta)
 
     return {
@@ -41,9 +67,10 @@ export async function getStaticProps() {
       frontmatter,
     }
   })
+
   return {
     props: {
-      posts: posts,
+      posts: posts2,
     },
   }
 }

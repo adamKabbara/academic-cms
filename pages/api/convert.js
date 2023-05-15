@@ -18,12 +18,26 @@ export default function handler(req, res) {
   form.parse(req, async function (err, fields, files) {
     const thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
 
-    convertToMarkdown(files.file, fields.author, Buffer.from(thumbnailBody))
+    convertToMarkdown(
+      files.file,
+      fields.author,
+      Buffer.from(thumbnailBody),
+      fields.title,
+      fields.excerpt,
+      fields.topic
+    )
     return res.status(201).send('')
   })
 }
 
-const convertToMarkdown = async (file, author, thumbnail) => {
+const convertToMarkdown = async (
+  file,
+  author,
+  thumbnail,
+  title,
+  excerpt,
+  topic
+) => {
   const wordsApi = new WordsApi(
     'af80956f-7ce5-4f2e-a273-b1ca72654d9b',
     '09de9df66660ec7e361903022078e08d'
@@ -39,14 +53,21 @@ const convertToMarkdown = async (file, author, thumbnail) => {
   const convertedFile = await wordsApi
     .convertDocument(convertRequest)
     .then((convertRequestResult) => {
-      saveFile(convertRequestResult.body, author, thumbnail)
+      saveFile(
+        convertRequestResult.body,
+        author,
+        thumbnail,
+        title,
+        excerpt,
+        topic
+      )
     })
 }
 
 // saveFile(convertRequestResult.body, author)
-const saveFile = async (file, author, thumbnail) => {
+const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
   fetch('http://localhost:3000/api/addPost', {
     method: 'POST',
-    body: JSON.stringify({ file, author, thumbnail }),
+    body: JSON.stringify({ file, author, thumbnail, title, excerpt, topic }),
   })
 }

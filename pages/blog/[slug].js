@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -20,7 +21,7 @@ export default function PostPage({
         </h1>
         <div className=" leading-9 text-slate-500 text-lg">{date}</div>
         <img
-          src={/* '/academic-cms' + */ '' + thumbnail}
+          src={/* '/academic-cms' + */ `data:image/jpeg;base64,${thumbnail}`}
           alt="topic picture"
           className="m-auto  object-cover pt-10 pb-10  topic-image"
         />
