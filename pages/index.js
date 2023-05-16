@@ -38,14 +38,19 @@ export async function getStaticProps() {
     .toArray()
 
   const posts2 = send.map((post) => {
-    const slug = post.topic
+    const slug = post.title
 
-    const meta = `---\ntitle: ${post.title}\ndate: '${post.date}'\nthumbnail: ${post.thumbnail.data}\nexcerpt: ${post.excerpt}\n---\n${post.file}`
+    const meta = `---\ntitle: ${post.title}\ndate: '${
+      post.date
+    }'\nthumbnail: /images/${post.title.replace(/\s/g, '')}.jpg\nexcerpt: ${
+      post.excerpt
+    }\n---\n${post.file}`
 
     const { data: frontmatter } = matter(meta)
     return {
       slug,
       frontmatter,
+      meta,
     }
   })
 
@@ -56,6 +61,8 @@ export async function getStaticProps() {
   // excerpt: It was a simple tip of the hat. Grace didn't think that anyone else besides her had even noticed it.
   // ---
 
+  // posts2.forEach((post) => fs.writeFileSync('../posts/' + post.slug, posts.))
+
   const files = fs.readdirSync(path.join('posts'))
   const posts = files.map((filename) => {
     const slug = filename.replace('.md', '')
@@ -65,6 +72,7 @@ export async function getStaticProps() {
     return {
       slug,
       frontmatter,
+      meta,
     }
   })
 

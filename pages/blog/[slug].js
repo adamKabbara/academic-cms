@@ -4,7 +4,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
 import { useAuth0 } from '@auth0/auth0-react'
-import { connectDB } from '../../utils/connectDB'
+import connectDB from '../../utils/connectDB'
 
 export default function PostPage({
   frontmatter: { title, date, thumbnail },
@@ -21,7 +21,7 @@ export default function PostPage({
         </h1>
         <div className=" leading-9 text-slate-500 text-lg">{date}</div>
         <img
-          src={/* '/academic-cms' + */ `data:image/jpeg;base64,${thumbnail}`}
+          src={/* '/academic-cms' + */ thumbnail}
           alt="topic picture"
           className="m-auto  object-cover pt-10 pb-10  topic-image"
         />
@@ -41,16 +41,27 @@ export default function PostPage({
 }
 
 export async function getStaticPaths() {
-  const client = connectDB()
-  // client.db('Project0').collection('posts').find()
-
   const files = fs.readdirSync(path.join('posts'))
 
-  const paths = files.map((filename) => ({
+  const client = await connectDB()
+
+  const posts = await client
+    .db('Project0')
+    .collection('posts')
+    .find({})
+    .toArray()
+
+  const paths = posts.map((post) => ({
     params: {
-      slug: filename.replace('.md', ''),
+      slug: '' + post.title,
     },
   }))
+
+  // const paths = files.map((filename) => ({
+  //   params: {
+  //     slug: filename.replace('.md', ''),
+  //   },
+  // }))
 
   return {
     paths,
