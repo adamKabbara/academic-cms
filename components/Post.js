@@ -19,7 +19,7 @@ export default function Post({ post }) {
         <div className="p-4">
           <a href="#">
             <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Created {post.frontmatter.title}
+              {post.frontmatter.title}
             </h5>
           </a>
 

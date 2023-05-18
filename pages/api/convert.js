@@ -3,6 +3,7 @@ import { ConvertDocumentRequest } from 'asposewordscloud'
 import formidable from 'formidable'
 import path from 'path'
 import * as fs from 'fs'
+import postImages from '../../utils/postImages'
 
 export const config = {
   api: {
@@ -10,14 +11,16 @@ export const config = {
   },
 }
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') return
 
   const form = new formidable.IncomingForm()
 
   form.parse(req, async function (err, fields, files) {
-    const thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
+    let thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
+    thumbnailBody = Buffer.from(thumbnailBody.toString('base64'))
 
+    postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
     convertToMarkdown(
       files.file,
       fields.author,
@@ -66,6 +69,7 @@ const convertToMarkdown = async (
 
 // saveFile(convertRequestResult.body, author)
 const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
+  console.log('are we here')
   fetch('http://localhost:3000/api/addPost', {
     method: 'POST',
     body: JSON.stringify({ file, author, thumbnail, title, excerpt, topic }),

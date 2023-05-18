@@ -11,7 +11,6 @@ export default function handler(req, res) {
     const post = {
       file: fileBuffer.toString(),
       author: body.author,
-      thumbnail: body.thumbnail,
       topic: body.topic,
       date: new Date().toLocaleDateString(),
       excerpt: body.excerpt,

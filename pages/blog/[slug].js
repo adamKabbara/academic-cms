@@ -70,12 +70,21 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const markdownWithMeta = fs.readFileSync(
-    path.join('posts', slug + '.md'),
-    'utf-8'
-  )
+  console.log(slug)
+  // const markdownWithMeta = fs.readFileSync(
+  //   path.join('posts', slug + '.md'),
+  //   'utf-8'
+  // )
+  const client = await connectDB()
 
-  const { data: frontmatter, content } = matter(markdownWithMeta)
+  const posts = await client
+    .db('Project0')
+    .collection('posts')
+    .find({ title: slug })
+    .toArray()
+
+  console.log(posts)
+  const { data: frontmatter, content } = matter(slug)
 
   return {
     props: {
