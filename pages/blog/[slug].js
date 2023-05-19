@@ -5,6 +5,9 @@ import matter from 'gray-matter'
 import { marked } from 'marked'
 import { useAuth0 } from '@auth0/auth0-react'
 import connectDB from '../../utils/connectDB'
+import createMeta from '../../utils/createMeta'
+import { create } from 'domain'
+import fetchImages from '../../utils/fetchImages'
 
 export default function PostPage({
   frontmatter: { title, date, thumbnail },
@@ -19,7 +22,7 @@ export default function PostPage({
         <h1 className="text-4xl" id="post-title">
           {title}
         </h1>
-        <div className=" leading-9 text-slate-500 text-lg">{date}</div>
+        <div className=" leading-9 text-slate-500 text-lg">Created {date}</div>
         <img
           src={/* '/academic-cms' + */ thumbnail}
           alt="topic picture"
@@ -54,14 +57,9 @@ export async function getStaticPaths() {
   const paths = posts.map((post) => ({
     params: {
       slug: '' + post.title,
+      title: post.title,
     },
   }))
-
-  // const paths = files.map((filename) => ({
-  //   params: {
-  //     slug: filename.replace('.md', ''),
-  //   },
-  // }))
 
   return {
     paths,
@@ -69,20 +67,34 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps(/* { params: { slug } } */ props) {
+export async function getStaticProps({ params: { slug } }) {
   // const markdownWithMeta = fs.readFileSync(
   //   path.join('posts', slug + '.md'),
   //   'utf-8'
   // )
   const client = await connectDB()
 
+  const thumbnail = await fetchImages()
+
   const posts = await client
     .db('Project0')
     .collection('posts')
     .find({ title: slug })
     .toArray()
+  const post = posts[0]
 
-  const { data: frontmatter, content } = matter(slug)
+  const { data: frontmatter, content } = matter(
+    createMeta(
+      post.title,
+      post.date,
+      thumbnail[slug.replace(/\s/g, '')],
+      post.excerpt,
+      post.file
+    )
+  )
+
+  console.log('asdf', frontmatter)
+  console.log(content)
 
   return {
     props: {

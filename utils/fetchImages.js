@@ -1,10 +1,11 @@
-const fetchImages = async () => {
+const fetchImages = async (name) => {
   const headers = new Headers()
   headers.append(
     'Authorization',
     'Basic cHJpdmF0ZV9FZW5qVnhnMUw5MWRZRW1UdTY2SzY3K3M1Rm89Og=='
   )
-  let images = await fetch('https://api.imagekit.io/v1/files', {
+  console.log(name)
+  let images = await fetch(`https://api.imagekit.io/v1/files`, {
     headers: headers,
   }).then((res) => res.json())
 

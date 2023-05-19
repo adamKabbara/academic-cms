@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import Link from 'next/link'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -11,7 +12,7 @@ export default function Post({ post }) {
           <a>
             <img
               className="thumbnail"
-              src={/* '/academic-cms' + */ '' + post.frontmatter.thumbnail}
+              src={'' + post.frontmatter.thumbnail}
               alt="thumbnail"
             />
           </a>
