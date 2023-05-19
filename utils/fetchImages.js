@@ -10,7 +10,7 @@ const fetchImages = async () => {
 
   const imagesMap = {}
   images.forEach((image) => {
-    const imageName = image.name.split('.')[0]
+    const imageName = image.name.split('_')[0]
 
     imagesMap[imageName] = image.url
   })

@@ -27,43 +27,14 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  // const fetchImages = async () => {
-  //   const headers = new Headers()
-  //   headers.append(
-  //     'Authorization',
-  //     'Basic cHJpdmF0ZV9FZW5qVnhnMUw5MWRZRW1UdTY2SzY3K3M1Rm89Og=='
-  //   )
-  //   let images = await fetch('https://api.imagekit.io/v1/files', {
-  //     headers: headers,
-  //   }).then((res) => res.json())
-
-  //   const imagesMap = {}
-  //   images.forEach((image) => {
-  //     const imageName = image.name.split('.')[0]
-
-  //     imagesMap[imageName] = image.url
-  //   })
-  //   return imagesMap
-  // }
-
-  const thumb = await fetchImages()
-
-  // const client = await connectDB()
-
-  // const send = await client
-  //   .db('Project0')
-  //   .collection('posts')
-  //   .find({})
-  //   .toArray()
+  const thumbnailList = await fetchImages()
 
   const send = await fetchFiles()
 
   const posts2 = send.map((post) => {
     const slug = post.title
 
-    const thumbnailUrl = thumb[post.title]
-
-    console.log(thumbnailUrl)
+    const thumbnailUrl = thumbnailList[post.title.replace(/\s/g, '')]
 
     const meta = createMeta(
       post.title,

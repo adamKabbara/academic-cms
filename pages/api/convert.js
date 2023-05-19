@@ -21,6 +21,7 @@ export default async function handler(req, res) {
     thumbnailBody = Buffer.from(thumbnailBody.toString('base64'))
 
     postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
+
     convertToMarkdown(
       files.file,
       fields.author,
@@ -69,7 +70,6 @@ const convertToMarkdown = async (
 
 // saveFile(convertRequestResult.body, author)
 const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
-  console.log('are we here')
   fetch('http://localhost:3000/api/addPost', {
     method: 'POST',
     body: JSON.stringify({ file, author, thumbnail, title, excerpt, topic }),

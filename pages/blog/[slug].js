@@ -69,8 +69,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params: { slug } }) {
-  console.log(slug)
+export async function getStaticProps(/* { params: { slug } } */ props) {
   // const markdownWithMeta = fs.readFileSync(
   //   path.join('posts', slug + '.md'),
   //   'utf-8'
@@ -83,7 +82,6 @@ export async function getStaticProps({ params: { slug } }) {
     .find({ title: slug })
     .toArray()
 
-  console.log(posts)
   const { data: frontmatter, content } = matter(slug)
 
   return {
