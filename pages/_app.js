@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
       domain="dev-8u207j1w6z8wr0xc.us.auth0.com"
       clientId="gTQkAgx5RFTgiGo5g1HKfbRrCwcJWhgH"
       authorizationParams={{
-        redirect_uri: 'http://localhost:3000/',
+        redirect_uri: 'https://academic-cms.vercel.app/',
       }}
     >
       <Header></Header>
