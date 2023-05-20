@@ -13,6 +13,11 @@ body {
   height: 100vh;
 }
 
+#searchButton {
+  top: 4px;
+  left: 165px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -128,5 +133,14 @@ main {
 @media only screen and (max-width: 500px) {
   #main-icon {
     height: 40px;
+  }
+  #searchDiv {
+    /* w-full flex items-center justify-center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 10px; */
+    padding-bottom: 5px;
+    width: 100%;
   }
 }
