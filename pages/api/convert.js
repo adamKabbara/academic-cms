@@ -68,7 +68,6 @@ const convertToMarkdown = async (
     })
 }
 
-// saveFile(convertRequestResult.body, author)
 const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
   fetch('http://localhost:3000/api/addPost', {
     method: 'POST',

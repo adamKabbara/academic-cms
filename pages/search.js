@@ -55,7 +55,6 @@ export async function getStaticProps() {
       post.excerpt,
       post.file
     )
-    // const meta = `---\ntitle: ${post.title}\ndate: '${post.date}'\nthumbnail: ${thumbnailUrl}\nexcerpt: ${post.excerpt}\n---\n${post.file}`
 
     const { data: frontmatter } = matter(meta)
     return {
@@ -64,21 +63,6 @@ export async function getStaticProps() {
       meta,
     }
   })
-
-  // posts2.forEach((post) => fs.writeFileSync('../posts/' + post.slug, posts.))
-
-  // const files = fs.readdirSync(path.join('posts'))
-  // const posts = files.map((filename) => {
-  //   const slug = filename.replace('.md', '')
-  //   const meta = fs.readFileSync(path.join('posts', filename), 'utf-8')
-  //   const { data: frontmatter } = matter(meta)
-
-  //   return {
-  //     slug,
-  //     frontmatter,
-  //     meta,
-  //   }
-  // })
 
   return {
     props: {

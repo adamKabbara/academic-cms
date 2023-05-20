@@ -21,7 +21,7 @@ export default function Header() {
     toggleMenu(menuRef)
   }, [isToggled])
 
-  const imageLink = /* '/academic-cms' + */ '/icons/icon4.svg'
+  const imageLink = '/icons/icon4.svg'
 
   const { loginWithRedirect, user, isAuthenticated, logout } = useAuth0()
 

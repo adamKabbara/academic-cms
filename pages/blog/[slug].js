@@ -25,7 +25,7 @@ export default function PostPage({
         </h1>
         <div className=" leading-9 text-slate-500 text-lg">Created {date}</div>
         <img
-          src={/* '/academic-cms' + */ thumbnail}
+          src={thumbnail}
           alt="topic picture"
           className="m-auto  object-cover pt-10 pb-10  topic-image"
         />

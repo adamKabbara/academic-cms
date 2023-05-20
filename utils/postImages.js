@@ -5,7 +5,6 @@ const postImages = async (fileBuffer, fileName) => {
     'Authorization',
     'Basic cHJpdmF0ZV9FZW5qVnhnMUw5MWRZRW1UdTY2SzY3K3M1Rm89Og=='
   )
-  // headers.append('Content-Type', 'multipart/form-data')
   headers.append('Connection', 'keep-alive')
   headers.append('Accept', '*/*')
   headers.append('Accept-Encoding', 'gzip, deflate, br')
