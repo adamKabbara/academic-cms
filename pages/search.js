@@ -4,17 +4,23 @@ import Footer from '../components/Footer'
 import { useState } from 'react'
 import fetchImages from '../utils/fetchImages'
 import createMeta from '../utils/createMeta'
+import { useEffect } from 'react'
 
 import fetchFiles from '../utils/fetchFiles'
 export default function Home({ posts }) {
   const [isCollapsed, setIsCollapsed] = useState(true)
-  console.log(posts)
-  const searchFilter = new URLSearchParams(window.location.search).get('title')
-  console.log(searchFilter)
-  posts = posts.filter(
-    (post) => post.frontmatter.title == 'Use of AI in Robotics'
-  )
 
+  const [searchFilter, setSearchFilter] = useState('')
+  useEffect(() => {
+    setSearchFilter(new URLSearchParams(window.location.search).get('title'))
+  }, [])
+
+  posts = posts.filter((post) => {
+    console.log(post.frontmatter.title)
+    return searchFilter.toLowerCase()
+      ? post.frontmatter.title.toLowerCase() == searchFilter
+      : true
+  })
   return (
     <div>
       <div id="main-content" className="">

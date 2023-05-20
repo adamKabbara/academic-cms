@@ -8,6 +8,7 @@ import connectDB from '../../utils/connectDB'
 import createMeta from '../../utils/createMeta'
 import { create } from 'domain'
 import fetchImages from '../../utils/fetchImages'
+import { useEffect } from 'react'
 
 export default function PostPage({
   frontmatter: { title, date, thumbnail },
