@@ -5,6 +5,7 @@ import { useState } from 'react'
 import fetchImages from '../utils/fetchImages'
 import createMeta from '../utils/createMeta'
 import { useEffect } from 'react'
+import MiniSearch from 'minisearch'
 
 import fetchFiles from '../utils/fetchFiles'
 export default function Home({ posts }) {
@@ -15,12 +16,32 @@ export default function Home({ posts }) {
     setSearchFilter(new URLSearchParams(window.location.search).get('title'))
   }, [])
 
-  posts = posts.filter((post) => {
-    console.log(post.frontmatter.title)
-    return searchFilter.toLowerCase()
-      ? post.frontmatter.title.toLowerCase() == searchFilter
-      : true
+  let i = 0
+  posts.map((post) => {
+    post.id = i
+    i++
   })
+
+  const miniSearch = new MiniSearch({
+    fields: ['slug'],
+    storeFields: ['frontmatter', 'meta'],
+  })
+
+  miniSearch.addAll(posts)
+
+  const results = miniSearch.search(searchFilter)
+
+  // posts = posts.filter((post) => {
+  //   console.log(post.frontmatter.title)
+  //   return searchFilter.toLowerCase()
+  //     ? post.frontmatter.title.toLowerCase() == searchFilter
+  //     : true
+  // })
+
+  // console.log('asdf')
+  // console.log(mini)
+  // {isSearch ? 'Search Results for:' : 'Latest Research'}
+  //
   return (
     <div>
       <div id="main-content" className="">
@@ -29,7 +50,7 @@ export default function Home({ posts }) {
         </h1>
         <hr className="pb-5 w-96 m-auto" />
         <div className="posts">
-          {posts.map((post, index) => {
+          {results.map((post, index) => {
             return <Post post={post} key={post.frontmatter.title} />
           })}
         </div>

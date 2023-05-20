@@ -92,7 +92,7 @@ export default function Header() {
             onClick={() => setIsToggled(!isToggled)}
             data-collapse-toggle="navbar-default"
             type="button"
-            className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg mdlg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-default"
             aria-expanded="false"
           >
@@ -113,18 +113,18 @@ export default function Header() {
           </button>
           <div
             ref={menuRef}
-            className=" hidden p-1 w-full md:block md:w-auto ark:bg-gray-900"
+            className=" hidden p-1 w-full mdlg:block mdlg:w-auto ark:bg-gray-900"
             id="navbar-default"
           >
             <ul
-              className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 items-center"
+              className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 mdlg:flex-row mdlg:space-x-8 mdlg:mt-0 mdlg:text-sm mdlg:font-medium mdlg:border-0 mdlg:bg-white dark:bg-gray-800 mdlg:dark:bg-gray-900 dark:border-gray-700 items-center"
               id="navbar-list "
             >
               {isAuthenticated && (
-                <li className="max-md:py-1 max-md:mb-3 max-md:px-0   bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <li className="max-mdlg:py-2 max-mdlg:mb-3 max-mdlg:px-0   bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                   <a
                     href="../posts/create"
-                    className=" block py-2 pr-4 pl-3 text-gray-700 rounded   md:border-0  md:p-0 dark:text-gray-100   "
+                    className=" block max-mdlg:px-2  text-gray-700 rounded   mdlg:border-0   dark:text-gray-100   "
                   >
                     Create Post
                   </a>
@@ -134,7 +134,7 @@ export default function Header() {
                 {isAuthenticated ? (
                   <a
                     href=""
-                    className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                    className="block py-2 pr-4 pl-3 text-blue-700 rounded hover:bg-gray-100 mdlg:hover:bg-transparent mdlg:border-0 mdlg:hover:text-blue-700 mdlg:p-0  "
                     aria-current="page"
                     onClick={() => logout()}
                   >
@@ -143,7 +143,7 @@ export default function Header() {
                 ) : (
                   <a
                     href=""
-                    className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                    className="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded mdlg:bg-transparent mdlg:text-blue-700 mdlg:p-0 dark:text-white"
                     aria-current="page"
                     onClick={() => loginWithRedirect()}
                   >
@@ -152,22 +152,22 @@ export default function Header() {
                 )}
               </li>
               <li onClick={() => setIsToggled(!isToggled)}>
-                <Link
+                <a
                   href="about"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 mdlg:hover:bg-transparent mdlg:border-0 mdlg:hover:text-blue-700 mdlg:p-0 dark:text-gray-400 mdlg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white mdlg:dark:hover:bg-transparent"
                   onClick={() => setIsToggled(!isToggled)}
                 >
                   About
-                </Link>
+                </a>
               </li>
 
               <li onClick={() => setIsToggled(!isToggled)}>
-                <Link
+                <a
                   href="/contact"
-                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 mdlg:hover:bg-transparent mdlg:border-0 mdlg:hover:text-blue-700 mdlg:p-0 dark:text-gray-400 mdlg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white mdlg:dark:hover:bg-transparent"
                 >
                   Contact
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

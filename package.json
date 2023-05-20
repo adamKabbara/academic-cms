@@ -15,6 +15,7 @@
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "marked": "^4.1.1",
+    "minisearch": "^6.1.0",
     "mongodb": "^5.4.0",
     "next": "12.3.1",
     "react": "18.2.0",

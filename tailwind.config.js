@@ -17,6 +17,9 @@ module.exports = {
           1100: '#D9D2C9',
         },
       },
+      screens: {
+        mdlg: '876px',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

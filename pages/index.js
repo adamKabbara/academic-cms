@@ -5,28 +5,28 @@ import { useState } from 'react'
 import fetchImages from '../utils/fetchImages'
 import createMeta from '../utils/createMeta'
 import { useEffect } from 'react'
+import * as miniSearch from 'MiniSearch'
 
 import fetchFiles from '../utils/fetchFiles'
 export default function Home({ posts }) {
   const [isCollapsed, setIsCollapsed] = useState(true)
 
-  const [isSearch, setIssearch] = useState(false)
+  // const [isSearch, setIssearch] = useState(false)
 
-  const [searchFilter, setSearchFilter] = useState()
-  useEffect(() => {
-    setSearchFilter(new URLSearchParams(window.location.search).get('title'))
-    console.log('this is run')
-  }, [])
+  // const [searchFilter, setSearchFilter] = useState()
+  // useEffect(() => {
+  //   setSearchFilter(new URLSearchParams(window.location.search).get('title'))
+  // }, [])
 
-  posts = posts.filter((post) => {
-    return searchFilter ? post.frontmatter.title == searchFilter : true
-  })
+  // posts = posts.filter((post) => {
+  //   return searchFilter ? post.frontmatter.title == searchFilter : true
+  // })
 
   return (
     <div>
       <div id="main-content" className="">
         <h1 className="text-2xl pb-5 pt-2  font-bold m-auto">
-          {isSearch ? 'Search Results for:' : 'Latest Research'}
+          Latest Research
         </h1>
         <hr className="pb-5 w-96 m-auto" />
         <div className="posts">
