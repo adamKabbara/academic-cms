@@ -31,7 +31,8 @@ function Create() {
   }
 
   return (
-    <div className="mt-20 w-full flex items-center justify-center">
+    <div className="mt-8 w-full flex flex-col items-center justify-center">
+      <h1 className="text-xl pb-10 font-semibold ">Create Post</h1>
       <form
         className="w-1/2 max-w-260 max-sm:w-full max-md:w-2/3"
         onSubmit={(e) => {
