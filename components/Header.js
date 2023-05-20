@@ -29,7 +29,7 @@ export default function Header() {
     <>
       {showModal && <Modal closeModal={closed} />}
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 mb-7">
-        <div className="container flex flex-wrap justify-between items-center mx-auto">
+        <div className=" flex flex-wrap justify-between items-center mx-auto">
           <div id="searchDiv">
             <Link href="/">
               <a className="flex items-center">
