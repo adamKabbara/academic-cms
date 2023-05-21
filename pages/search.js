@@ -5,7 +5,7 @@ import { useState } from 'react'
 import fetchImages from '../utils/fetchImages'
 import createMeta from '../utils/createMeta'
 import { useEffect } from 'react'
-import MiniSearch from 'minisearch'
+import MiniSearch from 'Minisearch'
 
 import fetchFiles from '../utils/fetchFiles'
 export default function Home({ posts }) {
