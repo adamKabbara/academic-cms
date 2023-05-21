@@ -10,6 +10,19 @@ import { create } from 'domain'
 import fetchImages from '../../utils/fetchImages'
 import { useEffect } from 'react'
 
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  PinterestShareButton,
+  PinterestIcon,
+  RedditShareButton,
+  RedditIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+} from 'next-share'
+
 export default function PostPage({
   frontmatter: { title, date, thumbnail },
   slug,
@@ -24,10 +37,51 @@ export default function PostPage({
           {title}
         </h1>
         <div className=" leading-9 text-slate-500 text-lg">Created {date}</div>
+
+        <div className="flex flex-col items-end">
+          <p className="mb-2 block text-slate-400">Share Research:</p>
+          <div className="flex space-x-1">
+            <FacebookShareButton
+              url={'https://academic-cms.vercel.app/'}
+              title={'Check out this research paper: '}
+              quote={'Check out this research paper: '}
+            >
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
+            <PinterestShareButton
+              url={'https://academic-cms.vercel.app/'}
+              title={'Check out this research paper: '}
+              quote={'Check out this research paper: '}
+            >
+              <PinterestIcon size={32} round />
+            </PinterestShareButton>
+            <RedditShareButton
+              url={'https://academic-cms.vercel.app/'}
+              title={'Check out this research paper: '}
+              quote={'Check out this research paper: '}
+            >
+              <RedditIcon size={32} round />
+            </RedditShareButton>
+            <WhatsappShareButton
+              url={'https://academic-cms.vercel.app/'}
+              title={'Check out this research paper: '}
+              quote={'Check out this research paper: '}
+            >
+              <WhatsappIcon size={32} round />
+            </WhatsappShareButton>
+            <LinkedinShareButton
+              url={'https://academic-cms.vercel.app/'}
+              title={'Check out this research paper: '}
+              quote={'Check out this research paper: '}
+            >
+              <LinkedinIcon size={32} round />
+            </LinkedinShareButton>
+          </div>
+        </div>
         <img
           src={thumbnail}
           alt="topic picture"
-          className="m-auto  object-cover pt-10 pb-10  topic-image"
+          className="m-auto  object-cover pt-8 pb-10  topic-image"
         />
         <div
           style={{ width: '100%' }}

@@ -11,6 +11,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.0.2",
     "asposewordscloud": "^23.3.0",
+    "cookies-next": "^2.1.1",
     "formidable": "^2.1.1",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
@@ -18,8 +19,10 @@
     "minisearch": "^6.1.0",
     "mongodb": "^5.4.0",
     "next": "12.3.1",
+    "next-share": "^0.20.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "rsuite": "^5.34.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.7",
