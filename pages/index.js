@@ -13,22 +13,6 @@ export default function Home({ posts }) {
 
   return (
     <div>
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-M5MZ68L7S6"
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-M5MZ68L7S6');
-          `,
-        }}
-      />
-
       <div id="main-content" className="">
         <h1 className="text-2xl pb-5 pt-2  font-bold m-auto">
           Latest Research
