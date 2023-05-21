@@ -69,13 +69,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  // const markdownWithMeta = fs.readFileSync(
-  //   path.join('posts', slug + '.md'),
-  //   'utf-8'
-  // )
   const client = await connectDB()
 
   const thumbnail = await fetchImages()
+
+  console.log('thum ', /* thumbnail[slug.replace(/\s/g, '')] */ thumbnail)
 
   const posts = await client
     .db('Project0')
@@ -93,9 +91,6 @@ export async function getStaticProps({ params: { slug } }) {
       post.file
     )
   )
-
-  console.log('asdf', frontmatter)
-  console.log(content)
 
   return {
     props: {

@@ -11,17 +11,6 @@ import fetchFiles from '../utils/fetchFiles'
 export default function Home({ posts }) {
   const [isCollapsed, setIsCollapsed] = useState(true)
 
-  // const [isSearch, setIssearch] = useState(false)
-
-  // const [searchFilter, setSearchFilter] = useState()
-  // useEffect(() => {
-  //   setSearchFilter(new URLSearchParams(window.location.search).get('title'))
-  // }, [])
-
-  // posts = posts.filter((post) => {
-  //   return searchFilter ? post.frontmatter.title == searchFilter : true
-  // })
-
   return (
     <div>
       <div id="main-content" className="">
