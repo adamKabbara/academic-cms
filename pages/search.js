@@ -5,7 +5,7 @@ import { useState } from 'react'
 import fetchImages from '../utils/fetchImages'
 import createMeta from '../utils/createMeta'
 import { useEffect } from 'react'
-import MiniSearch from 'minisearch'
+import MiniSearch from 'minisearch.js'
 
 import fetchFiles from '../utils/fetchFiles'
 export default function Home({ posts }) {
@@ -31,17 +31,6 @@ export default function Home({ posts }) {
 
   const results = miniSearch.search(searchFilter)
 
-  // posts = posts.filter((post) => {
-  //   console.log(post.frontmatter.title)
-  //   return searchFilter.toLowerCase()
-  //     ? post.frontmatter.title.toLowerCase() == searchFilter
-  //     : true
-  // })
-
-  // console.log('asdf')
-  // console.log(mini)
-  // {isSearch ? 'Search Results for:' : 'Latest Research'}
-  //
   return (
     <div>
       <div id="main-content" className="">

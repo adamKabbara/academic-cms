@@ -73,8 +73,6 @@ export async function getStaticProps({ params: { slug } }) {
 
   const thumbnail = await fetchImages()
 
-  console.log('thum ', /* thumbnail[slug.replace(/\s/g, '')] */ thumbnail)
-
   const posts = await client
     .db('Project0')
     .collection('posts')
