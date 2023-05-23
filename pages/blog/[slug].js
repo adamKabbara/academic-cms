@@ -45,28 +45,28 @@ anxia cognoscere quid _est nosterque_ tamen.
   // console.log(content)
   // const html = `<h1 id="succedere-conplexi-humi-undis-volenti-occuluit-serpens">Succedere conplexi humi undis volenti occuluit serpens</h1><h2 id="quas-argolicas-sine">Quas Argolicas sine</h2>`
 
-  const translate = async () => {
-    const html = contentDiv.current.innerHTML.replace(/(\r\n|\n|\r)/gm, '')
+  // const translate = async () => {
+  //   const html = contentDiv.current.innerHTML.replace(/(\r\n|\n|\r)/gm, '')
 
-    const url = `https://translation.googleapis.com/language/translate/v2?key=AIzaSyBECzcLnTcRVItov_FennhVlNvCRgil9mw&target=en&format=html&q=${html}`
+  //    const url = `https://translation.googleapis.com/language/translate/v2?key=AIzaSyBECzcLnTcRVItov_FennhVlNvCRgil9mw&target=en&format=html&q=${html}`
 
-    fetch(url, {
-      method: 'POST',
-      headers: {},
-    }).then((res) =>
-      res
-        .json()
-        .then(
-          (data) =>
-            (contentDiv.current.innerHTML =
-              data.data.translations[0].translatedText)
-        )
-    )
-  }
+  //   fetch(url, {
+  //     method: 'POST',
+  //     headers: {},
+  //   }).then((res) =>
+  //     res
+  //       .json()
+  //       .then(
+  //         (data) =>
+  //           (contentDiv.current.innerHTML =
+  //             data.data.translations[0].translatedText)
+  //       )
+  //   )
+  // }
 
-  useEffect(() => {
-    // translate()
-  }, [])
+  // useEffect(() => {
+  // translate()
+  // }, [])
 
   return (
     <>
@@ -205,5 +205,3 @@ export async function getStaticProps({ params: { slug } }) {
     },
   }
 }
-
-// AIzaSyBECzcLnTcRVItov_FennhVlNvCRgil9mw
