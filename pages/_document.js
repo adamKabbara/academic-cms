@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-M5MZ68L7S6', {page_path: 'https://academic-cms.vercel.app/'});
+            gtag('config', 'G-M5MZ68L7S6', {page_path: '/'});
           `,
             }}
           />
