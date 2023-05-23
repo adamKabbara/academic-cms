@@ -8,7 +8,7 @@ import connectDB from '../../utils/connectDB'
 import createMeta from '../../utils/createMeta'
 import { create } from 'domain'
 import fetchImages from '../../utils/fetchImages'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 import {
   FacebookShareButton,
@@ -29,6 +29,44 @@ export default function PostPage({
   content,
 }) {
   const { isAuthenticated } = useAuth0()
+  const contentDiv = useRef('')
+  /*
+  # Succedere conplexi humi undis volenti occuluit serpens
+
+## Quas Argolicas sine
+
+Lorem markdownum et memor fuit talia veteris de turbae exosus _tempora Oriente_
+gemitus transferre Lycisce dedit terraeque, pro furit? Cum illis populi geri
+palluit, videt avellere tormenta silvis at ante retexi carminaque alterius
+mensis [iussus](http://fraternorevertitur.com/invergens.html)? Ex gaudeat
+vestigia, huc in greges; capitis fuit. **Patareaque** bello, nec nardi quicquam
+anxia cognoscere quid _est nosterque_ tamen.
+  */
+  // console.log(content)
+  // const html = `<h1 id="succedere-conplexi-humi-undis-volenti-occuluit-serpens">Succedere conplexi humi undis volenti occuluit serpens</h1><h2 id="quas-argolicas-sine">Quas Argolicas sine</h2>`
+
+  const translate = async () => {
+    const html = contentDiv.current.innerHTML.replace(/(\r\n|\n|\r)/gm, '')
+
+    const url = `https://translation.googleapis.com/language/translate/v2?key=AIzaSyBECzcLnTcRVItov_FennhVlNvCRgil9mw&target=en&format=html&q=${html}`
+
+    fetch(url, {
+      method: 'POST',
+      headers: {},
+    }).then((res) =>
+      res
+        .json()
+        .then(
+          (data) =>
+            (contentDiv.current.innerHTML =
+              data.data.translations[0].translatedText)
+        )
+    )
+  }
+
+  useEffect(() => {
+    translate()
+  }, [])
 
   return (
     <>
@@ -47,7 +85,7 @@ export default function PostPage({
                 width="27"
                 height="27"
                 fill="currentColor"
-                class="bi bi-download"
+                className="bi bi-download"
                 viewBox="0 0 16 16"
               >
                 {' '}
@@ -103,6 +141,7 @@ export default function PostPage({
           id="main"
         >
           <div
+            ref={contentDiv}
             style={{ width: '100%' }}
             dangerouslySetInnerHTML={{ __html: marked(content) }}
           ></div>
@@ -166,3 +205,5 @@ export async function getStaticProps({ params: { slug } }) {
     },
   }
 }
+
+// AIzaSyBECzcLnTcRVItov_FennhVlNvCRgil9mw
