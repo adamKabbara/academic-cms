@@ -65,7 +65,7 @@ anxia cognoscere quid _est nosterque_ tamen.
   }
 
   useEffect(() => {
-    translate()
+    // translate()
   }, [])
 
   return (
