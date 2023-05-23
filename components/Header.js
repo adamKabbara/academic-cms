@@ -190,12 +190,12 @@ export default function Header() {
               </li>
 
               <li onClick={() => setIsToggled(!isToggled)}>
-                <Link
-                  href="/contact"
+                <a
+                  href="contact"
                   className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 mdlg:hover:bg-transparent mdlg:border-0 mdlg:hover:text-blue-700 mdlg:p-0 dark:text-gray-400 mdlg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white mdlg:dark:hover:bg-transparent"
                 >
                   Contact
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
