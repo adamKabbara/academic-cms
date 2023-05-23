@@ -5,7 +5,6 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=G-M5MZ68L7S6w`}
@@ -17,7 +16,7 @@ export default class MyDocument extends Document {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-M5MZ68L7S6');
+            gtag('config', 'G-M5MZ68L7S6', {page_path: 'https://academic-cms.vercel.app/'});
           `,
             }}
           />
