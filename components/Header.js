@@ -87,7 +87,7 @@ export default function Header() {
               </button>
             </div>
           </form>
-          <div className="flex ">
+          <div className="flex mdlg:hidden">
             <button id="translateButton" className="mdlg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
