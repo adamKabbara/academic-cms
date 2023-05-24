@@ -9,6 +9,7 @@ import createMeta from '../../utils/createMeta'
 import { create } from 'domain'
 import fetchImages from '../../utils/fetchImages'
 import { useEffect, useRef } from 'react'
+import Post from '../../components/Post'
 
 import {
   FacebookShareButton,
@@ -27,6 +28,7 @@ export default function PostPage({
   frontmatter: { title, date, thumbnail },
   slug,
   content,
+  recommended,
 }) {
   const { isAuthenticated } = useAuth0()
   const contentDiv = useRef('')
@@ -145,6 +147,15 @@ anxia cognoscere quid _est nosterque_ tamen.
             style={{ width: '100%' }}
             dangerouslySetInnerHTML={{ __html: marked(content) }}
           ></div>
+          <div id="recommended" className="pt-20">
+            <hr className="m-auto pb-10"></hr>
+            <h2>Recommended Readings</h2>
+            <div className="posts">
+              {recommended.map((post, index) => {
+                return <Post post={post} key={recommended.title} />
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </>
@@ -185,7 +196,32 @@ export async function getStaticProps({ params: { slug } }) {
     .collection('posts')
     .find({ title: slug })
     .toArray()
-  const post = posts[0]
+  // const post = posts[0]
+
+  const posts2 = await client
+    .db('Project0')
+    .collection('posts')
+    .find({})
+    .toArray()
+
+  const post = posts2.filter((post) => post.title === slug)[0]
+
+  const recommended = posts2.filter(
+    (el) => el.title != slug && el.topic === post.topic
+  )
+
+  recommended.forEach((el) => {
+    el['_id'] = null
+    // el.thumbnail = thumbnail[el.title.replace(/\s/g, '')]
+    el.frontmatter = {}
+    el.frontmatter.thumbnail = thumbnail[el.title.replace(/\s/g, '')]
+    el.frontmatter.title = el.title
+    el.slug = el.title
+    el.frontmatter.date = el.date
+    el.frontmatter.excerpt = el.excerpt
+  })
+
+  console.log(recommended)
 
   const { data: frontmatter, content } = matter(
     createMeta(
@@ -202,6 +238,7 @@ export async function getStaticProps({ params: { slug } }) {
       frontmatter,
       slug,
       content,
+      recommended,
     },
   }
 }
