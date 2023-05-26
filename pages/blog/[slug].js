@@ -214,7 +214,10 @@ export async function getStaticProps({ params: { slug } }) {
     el['_id'] = null
     // el.thumbnail = thumbnail[el.title.replace(/\s/g, '')]
     el.frontmatter = {}
-    el.frontmatter.thumbnail = thumbnail[el.title.replace(/\s/g, '')]
+    el.frontmatter.thumbnail =
+      thumbnail[el.title.replace(/\s/g, '')] === undefined
+        ? ''
+        : thumbnail[el.title.replace(/\s/g, '')]
     el.frontmatter.title = el.title
     el.slug = el.title
     el.frontmatter.date = el.date
