@@ -11,7 +11,7 @@ export const config = {
   },
 }
 
-export default async function convert(req, res) {
+export async function convert(req, res) {
   if (req.method !== 'POST') {
     res.json('hello')
     return

@@ -1,7 +1,7 @@
 import { MongoClient, ServerApiVersion } from 'mongodb'
 import connectDB from '../../utils/connectDB'
 
-export default function handler(req, res) {
+export function addPost(req, res) {
   const addPost = () => {
     const client = connectDB()
 

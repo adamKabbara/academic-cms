@@ -1,7 +1,7 @@
 import connectDB from '../../utils/connectDB'
 import { MongoClient } from 'mongodb'
 
-export default async function getPosts(req, res) {
+export async function getPosts(req, res) {
   const client = await connectDB()
 
   const send = await client
