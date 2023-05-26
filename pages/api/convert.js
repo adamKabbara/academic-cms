@@ -70,7 +70,7 @@ const convertToMarkdown = async (
 
 const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
   fetch('http://localhost:3000/api/addPost', {
-    method: 'POST',
+    method: 'GET',
     body: JSON.stringify({ file, author, thumbnail, title, excerpt, topic }),
   })
 }

@@ -25,7 +25,7 @@ function Create() {
     data.append('topic', topicInput.current.value)
 
     fetch('/api/convert', {
-      method: 'POST',
+      method: 'GET',
       body: data,
     })
   }
