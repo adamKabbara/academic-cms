@@ -227,7 +227,9 @@ export async function getStaticProps({ params: { slug } }) {
     createMeta(
       post.title,
       post.date,
-      thumbnail[slug.replace(/\s/g, '')],
+      thumbnail[slug.replace(/\s/g, '')] === undefined
+        ? ''
+        : thumbnail[slug.replace(/\s/g, '')],
       post.excerpt,
       post.file
     )

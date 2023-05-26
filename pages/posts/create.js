@@ -86,8 +86,9 @@ function Create() {
               className="block appearance-none w-full  border border-gray-600 bg-gray-1000 text-gray-1100 py-1 px-4 pr-8 rounded  focus:outline-none  focus:border-gray-500 mt-3 "
               id="grid-state"
               ref={topicInput}
+              defaultValue="def"
             >
-              <option value="" disabled selected>
+              <option value="def" disabled>
                 Select your topic
               </option>
               <option>Information Technology</option>
