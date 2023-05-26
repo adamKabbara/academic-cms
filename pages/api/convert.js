@@ -12,6 +12,7 @@ export const config = {
 }
 
 export default async function convert(req, res) {
+  res.redirect(303, '/')
   if (req.method !== 'POST') {
     res.json('hello')
     return
