@@ -12,31 +12,28 @@ export const config = {
 }
 
 export async function convert(req, res) {
-  if (req.method !== 'POST') {
-    res.json('hello')
-    return
+  if (req.method === 'POST') {
+    const form = new formidable.IncomingForm()
+
+    form.parse(req, async function (err, fields, files) {
+      let thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
+      thumbnailBody = Buffer.from(thumbnailBody.toString('base64'))
+
+      postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
+
+      convertToMarkdown(
+        files.file,
+        fields.author,
+        Buffer.from(thumbnailBody),
+        fields.title,
+        fields.excerpt,
+        fields.topic
+      )
+      return res.status(201).send('')
+    })
+  } else {
+    res.status(405).end() // Return 405 Method Not Allowed for other methods
   }
-
-  const form = new formidable.IncomingForm()
-
-  form.parse(req, async function (err, fields, files) {
-    let thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
-    thumbnailBody = Buffer.from(thumbnailBody.toString('base64'))
-
-    postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
-
-    convertToMarkdown(
-      files.file,
-      fields.author,
-      Buffer.from(thumbnailBody),
-      fields.title,
-      fields.excerpt,
-      fields.topic
-    )
-    return res.status(201).send('')
-  })
-
-  res.redirect(303, '/')
 }
 
 const convertToMarkdown = async (

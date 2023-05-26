@@ -27,5 +27,9 @@ export function addPost(req, res) {
       })
   }
 
-  addPost()
+  if (req.method === 'POST') {
+    addPost()
+  } else {
+    res.status(405).end() // Return 405 Method Not Allowed for other methods
+  }
 }
