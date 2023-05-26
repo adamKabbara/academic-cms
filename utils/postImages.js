@@ -1,4 +1,6 @@
 import * as fs from 'fs'
+
+const FormData = require('form-data')
 const postImages = async (fileBuffer, fileName) => {
   const headers = new Headers()
   headers.append(

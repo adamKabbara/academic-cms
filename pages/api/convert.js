@@ -11,8 +11,11 @@ export const config = {
   },
 }
 
-export async function handler(req, res) {
-  if (req.method !== 'POST') return
+export default async function convert(req, res) {
+  if (req.method !== 'POST') {
+    res.json('hello')
+    return
+  }
 
   const form = new formidable.IncomingForm()
 
@@ -32,6 +35,8 @@ export async function handler(req, res) {
     )
     return res.status(201).send('')
   })
+
+  res.redirect(303, '/')
 }
 
 const convertToMarkdown = async (
