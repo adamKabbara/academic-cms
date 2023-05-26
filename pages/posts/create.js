@@ -36,7 +36,6 @@ function Create() {
       <form
         className="w-1/2 max-w-260 max-sm:w-full max-md:w-2/3"
         onSubmit={(e) => {
-          e.preventDefault()
           uploadFile()
         }}
       >
