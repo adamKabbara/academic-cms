@@ -33,6 +33,7 @@ export default async function convert(req, res) {
     })
   } else {
     res.json({ test: 'hello' }) // Return 405 Method Not Allowed for other methods
+    res.status(200)
   }
 }
 
