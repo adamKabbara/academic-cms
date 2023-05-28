@@ -32,7 +32,7 @@ export async function convert(req, res) {
       return res.status(201).send('')
     })
   } else {
-    res.status(405).end() // Return 405 Method Not Allowed for other methods
+    res.json('chilling') // Return 405 Method Not Allowed for other methods
   }
 }
 
