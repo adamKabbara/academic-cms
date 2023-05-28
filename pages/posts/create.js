@@ -25,8 +25,8 @@ function Create() {
     data.append('topic', topicInput.current.value)
 
     fetch('https://academic-cms.vercel.app/api/convert', {
-      // method: 'POST',
-      // body: data,
+      method: 'POST',
+      body: data,
     })
   }
 
