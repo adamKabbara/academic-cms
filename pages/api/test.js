@@ -1,6 +1,6 @@
 import { MongoClient, ServerApiVersion } from 'mongodb'
 import connectDB from '../../utils/connectDB'
 
-export default function handler(req, res) {
-  res.json('fgh')
+export default function test(req, res) {
+  res.json({ test: 'is this working' })
 }
