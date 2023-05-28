@@ -11,7 +11,7 @@ export const config = {
   },
 }
 
-export async function convert(req, res) {
+export default async function convert(req, res) {
   if (req.method === 'POST') {
     const form = new formidable.IncomingForm()
 
@@ -32,7 +32,7 @@ export async function convert(req, res) {
       return res.status(201).send('')
     })
   } else {
-    res.json('chilling') // Return 405 Method Not Allowed for other methods
+    res.json({ test: 'hello' }) // Return 405 Method Not Allowed for other methods
   }
 }
 
