@@ -30,7 +30,7 @@ export default async function convert(req, res) {
         fields.excerpt,
         fields.topic
       )
-      return res.status(201).send('')
+      return res.status(201).send('dfsgsdf')
     })
   } else {
     res.json({ test: 'hello' }) // Return 405 Method Not Allowed for other methods
@@ -58,19 +58,19 @@ const convertToMarkdown = async (
     format: 'md',
   })
 
-  const convertedFile = await wordsApi.convertDocument(convertRequest)
-
-  await saveFile(convertedFile.body, author, thumbnail, title, excerpt, topic)
-  // .then((convertRequestResult) => {
-  //   saveFile(
-  //     convertRequestResult.body,
-  //     author,
-  //     thumbnail,
-  //     title,
-  //     excerpt,
-  //     topic
-  //   )
-  // })
+  const convertedFile = await wordsApi
+    .convertDocument(convertRequest)
+    .then((convertRequestResult) => {
+      console.log('HERERHERHERHEHRHERH')
+      saveFile(
+        convertRequestResult.body,
+        author,
+        thumbnail,
+        title,
+        excerpt,
+        topic
+      )
+    })
   // .catch((e) => res.send('THE ERROR ' + e))
 }
 
