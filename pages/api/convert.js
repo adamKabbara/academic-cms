@@ -53,30 +53,25 @@ const convertToMarkdown = async (
 
   const requestDocument = fs.readFileSync(file.filepath)
 
-  console.log('doc', requestDocument)
-
   const convertRequest = new ConvertDocumentRequest({
     document: requestDocument,
     format: 'md',
   })
 
-  console.log('conv req, ', convertRequest)
+  const convertedFile = await wordsApi.convertDocument(convertRequest)
 
-  const convertedFile = wordsApi
-    .convertDocument(convertRequest)
-    .then((convertRequestResult) => {
-      saveFile(
-        convertRequestResult.body,
-        author,
-        thumbnail,
-        title,
-        excerpt,
-        topic
-      )
-    })
-    .catch((e) => res.send('THE ERROR ' + e))
-
-  console.log('asdf', convertedFile)
+  await saveFile(convertedFile.body, author, thumbnail, title, excerpt, topic)
+  // .then((convertRequestResult) => {
+  //   saveFile(
+  //     convertRequestResult.body,
+  //     author,
+  //     thumbnail,
+  //     title,
+  //     excerpt,
+  //     topic
+  //   )
+  // })
+  // .catch((e) => res.send('THE ERROR ' + e))
 }
 
 const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {

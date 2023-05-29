@@ -24,10 +24,15 @@ function Create() {
     data.append('title', titleInput.current.value)
     data.append('topic', topicInput.current.value)
 
-    fetch('https://academic-cms.vercel.app/api/convert', {
-      method: 'POST',
-      body: data,
-    })
+    fetch(
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/api/convert'
+        : 'https://academic-cms.vercel.app/api/convert',
+      {
+        method: 'POST',
+        body: data,
+      }
+    )
   }
 
   return (
