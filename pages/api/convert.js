@@ -12,7 +12,6 @@ export const config = {
 }
 
 export default async function convert(req, res) {
-  console.log('Converting doc')
   if (req.method === 'POST') {
     const form = new formidable.IncomingForm()
 
@@ -20,9 +19,9 @@ export default async function convert(req, res) {
       let thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
       thumbnailBody = Buffer.from(thumbnailBody.toString('base64'))
 
-      postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
+      await postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
 
-      convertToMarkdown(
+      await convertToMarkdown(
         files.file,
         fields.author,
         Buffer.from(thumbnailBody),
@@ -30,6 +29,7 @@ export default async function convert(req, res) {
         fields.excerpt,
         fields.topic
       )
+
       return res.status(201).send('dfsgsdf')
     })
   } else {
