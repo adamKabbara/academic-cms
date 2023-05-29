@@ -12,6 +12,7 @@ export const config = {
 }
 
 export default async function convert(req, res) {
+  console.log('Converting doc')
   if (req.method === 'POST') {
     const form = new formidable.IncomingForm()
 
@@ -50,6 +51,8 @@ const convertToMarkdown = async (
     '09de9df66660ec7e361903022078e08d'
   )
 
+  console.log('Converting Markdonw')
+
   const requestDocument = fs.readFileSync(file.filepath)
 
   const convertRequest = new ConvertDocumentRequest({
@@ -72,6 +75,7 @@ const convertToMarkdown = async (
 }
 
 const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
+  console.log('Saving File')
   fetch(
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/api/addPost'
