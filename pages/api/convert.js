@@ -51,21 +51,20 @@ const convertToMarkdown = async (
     '09de9df66660ec7e361903022078e08d'
   )
 
-  console.log('Converting Markdonw')
-
   const requestDocument = fs.readFileSync(file.filepath)
+
+  console.log('doc', requestDocument)
 
   const convertRequest = new ConvertDocumentRequest({
     document: requestDocument,
     format: 'md',
   })
 
-  console.log('convert request')
+  console.log('conv req, ', convertRequest)
 
   const convertedFile = wordsApi
     .convertDocument(convertRequest)
     .then((convertRequestResult) => {
-      res.send('working')
       saveFile(
         convertRequestResult.body,
         author,
