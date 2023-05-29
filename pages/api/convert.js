@@ -76,6 +76,8 @@ const convertToMarkdown = async (
       )
     })
     .catch((e) => console.log('failed ' + e))
+
+  console.log('asdf', convertedFile)
 }
 
 const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
