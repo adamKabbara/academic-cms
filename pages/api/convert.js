@@ -61,9 +61,11 @@ const convertToMarkdown = async (
   })
 
   console.log('convert request')
-  const convertedFile = await wordsApi
+
+  const convertedFile = wordsApi
     .convertDocument(convertRequest)
     .then((convertRequestResult) => {
+      console.log('file has converted')
       saveFile(
         convertRequestResult.body,
         author,
