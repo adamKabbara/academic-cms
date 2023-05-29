@@ -54,6 +54,7 @@ function Create() {
             placeholder="Jane"
             ref={firstNameInput}
             required
+            defaultValue={'Kalyn'}
           />
           {/* rgb(217, 210, 201) */}
         </div>
@@ -71,6 +72,7 @@ function Create() {
             placeholder="Doe"
             ref={lastNameInput}
             required
+            defaultValue={'Bijou'}
           />
         </div>
 
@@ -86,7 +88,8 @@ function Create() {
               className="block appearance-none w-full  border border-gray-600 bg-gray-1000 text-gray-1100 py-1 px-4 pr-8 rounded  focus:outline-none  focus:border-gray-500 mt-3 "
               id="grid-state"
               ref={topicInput}
-              defaultValue="def"
+              // defaultValue="def"
+              defaultValue={'Information Technology'}
             >
               <option value="def" disabled>
                 Select your topic
@@ -120,6 +123,9 @@ function Create() {
             placeholder="Use of AI in Robotics"
             ref={titleInput}
             required
+            defaultValue={
+              'The Impact of Artificial Intelligence on Job Automation and Employment Trends: A Case Study in the Retail Industry'
+            }
           />
         </div>
         <div className="w-full  px-3 mb-6 md:mb-0 mt-6">
@@ -136,6 +142,9 @@ function Create() {
             placeholder="There wasn't a whole lot more that could be done. It had become a wait-and-see situation with the final results no longer in her control."
             ref={excerptInput}
             required
+            defaultValue={
+              'This research paper investigates the impact of Artificial Intelligence (AI) on job automation and employment trends within the context of the retail industry. '
+            }
           />
         </div>
         <div className="w-full  px-3 mb-6 md:mb-0 mt-6">
