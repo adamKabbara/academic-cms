@@ -19,7 +19,7 @@ export default async function convert(req, res) {
       let thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
       thumbnailBody = Buffer.from(thumbnailBody.toString('base64'))
 
-      await postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
+      // await postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
 
       await convertToMarkdown(
         files.file,
