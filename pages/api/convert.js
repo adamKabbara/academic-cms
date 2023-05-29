@@ -72,6 +72,7 @@ const convertToMarkdown = async (
         topic
       )
     })
+    .catch((e) => console.log('failed ' + e))
 }
 
 const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
