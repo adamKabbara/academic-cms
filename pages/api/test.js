@@ -8,6 +8,6 @@ export default async function test(req, res) {
     })
 
   const p = await prom()
-  console.log(p)
-  res.json({ test: 'is this working' })
+
+  res.json({ test: p })
 }
