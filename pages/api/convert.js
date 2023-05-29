@@ -65,7 +65,7 @@ const convertToMarkdown = async (
   const convertedFile = wordsApi
     .convertDocument(convertRequest)
     .then((convertRequestResult) => {
-      res.end('working')
+      res.send('working')
       saveFile(
         convertRequestResult.body,
         author,
@@ -75,7 +75,7 @@ const convertToMarkdown = async (
         topic
       )
     })
-    .catch((e) => res.end('THE ERROR ' + e))
+    .catch((e) => res.send('THE ERROR ' + e))
 
   console.log('asdf', convertedFile)
 }
