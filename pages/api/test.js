@@ -9,5 +9,7 @@ export default async function test(req, res) {
 
   const p = await prom()
 
+  console.log(p)
+
   res.json({ test: p })
 }
