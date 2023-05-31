@@ -27,7 +27,7 @@ export default function deletePosts(req, res) {
     client
       .db('Project0')
       .collection('posts')
-      .deleteMany({ date: '26/05/2023' }, (err, res) => {
+      .deleteMany({ date: '31/05/2023' }, (err, res) => {
         if (err) console.log('ERR' + err)
 
         client.close()

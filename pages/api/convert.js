@@ -17,9 +17,10 @@ export default async function convert(req, res) {
 
     form.parse(req, async function (err, fields, files) {
       let thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
-      thumbnailBody = Buffer.from(thumbnailBody.toString('base64'))
 
-      // await postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
+      thumbnailBody = thumbnailBody.toString('base64')
+
+      await postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
 
       await convertToMarkdown(
         files.file,
@@ -61,7 +62,6 @@ const convertToMarkdown = async (
   const convertedFile = await wordsApi
     .convertDocument(convertRequest)
     .then((convertRequestResult) => {
-      console.log('HERERHERHERHEHRHERH')
       saveFile(
         convertRequestResult.body,
         author,

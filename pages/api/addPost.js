@@ -26,8 +26,6 @@ export default function addPost(req, res) {
         console.log('doc added')
         client.close()
       })
-
-    console.log('addeddddd done')
   }
 
   if (req.method === 'POST') {
