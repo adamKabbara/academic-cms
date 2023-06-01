@@ -2,8 +2,8 @@ import { MongoClient, ServerApiVersion } from 'mongodb'
 import connectDB from '../../utils/connectDB'
 
 export default async function addPost(req, res) {
-  const addPost = () => {
-    const client = connectDB()
+  const addPost = async () => {
+    const client = await connectDB()
 
     console.log('connecting to client')
     const body = JSON.parse(req.body)
@@ -18,7 +18,7 @@ export default async function addPost(req, res) {
       title: body.title,
     }
 
-    client
+    await client
       .db('Project0')
       .collection('posts')
       .insertOne(post, (err, res) => {
