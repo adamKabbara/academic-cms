@@ -43,15 +43,15 @@ function Create() {
     imageData.append('image', thumbnail)
     imageData.append('title', titleInput.current.value)
 
-    await fetch(
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/api/postImage'
-        : 'https://academic-cms.vercel.app/api/postImage',
-      {
-        method: 'POST',
-        body: data,
-      }
-    )
+    // await fetch(
+    //   process.env.NODE_ENV === 'development'
+    //     ? 'http://localhost:3000/api/postImage'
+    //     : 'https://academic-cms.vercel.app/api/postImage',
+    //   {
+    //     method: 'POST',
+    //     body: data,
+    //   }
+    // )
   }
 
   return (
