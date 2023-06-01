@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import saveFile from '../../utils/saveFile'
 
-function Create() {
+async function Create() {
   const fileInput = useRef(null)
   const thumbnailInput = useRef(null)
   const firstNameInput = useRef('')
@@ -10,7 +10,7 @@ function Create() {
   const excerptInput = useRef('')
   const topicInput = useRef('')
 
-  const uploadFile = () => {
+  const uploadFile = async () => {
     const file = fileInput.current.files[0]
     const thumbnail = thumbnailInput.current.files[0]
 
@@ -25,7 +25,7 @@ function Create() {
     data.append('title', titleInput.current.value)
     data.append('topic', topicInput.current.value)
 
-    fetch(
+    await fetch(
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:3000/api/convert'
         : 'https://academic-cms.vercel.app/api/convert',
@@ -43,7 +43,7 @@ function Create() {
     imageData.append('image', thumbnail)
     imageData.append('title', titleInput.current.value)
 
-    fetch(
+    await fetch(
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:3000/api/postImage'
         : 'https://academic-cms.vercel.app/api/postImage',
