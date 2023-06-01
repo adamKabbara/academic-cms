@@ -1,9 +1,7 @@
 import { WordsApi } from 'asposewordscloud'
 import { ConvertDocumentRequest } from 'asposewordscloud'
 import formidable from 'formidable'
-import path from 'path'
 import * as fs from 'fs'
-import postImages from '../../utils/postImages'
 
 export const config = {
   api: {
@@ -16,37 +14,22 @@ export default async function convert(req, res) {
     const form = new formidable.IncomingForm()
 
     form.parse(req, async function (err, fields, files) {
-      let thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
-
-      thumbnailBody = thumbnailBody.toString('base64')
-
-      await postImages(thumbnailBody, fields.title.replace(/\s/g, '') + '.jpg')
-
-      await convertToMarkdown(
+      const data = await convertToMarkdown(
         files.file,
         fields.author,
-        Buffer.from(thumbnailBody),
         fields.title,
         fields.excerpt,
         fields.topic
       )
 
-      return res.status(201).send('dfsgsdf')
+      res.status('201').json(data)
     })
   } else {
-    res.json({ test: 'hello' }) // Return 405 Method Not Allowed for other methods
     res.status(200)
   }
 }
 
-const convertToMarkdown = async (
-  file,
-  author,
-  thumbnail,
-  title,
-  excerpt,
-  topic
-) => {
+const convertToMarkdown = async (file, author, title, excerpt, topic) => {
   const wordsApi = new WordsApi(
     'af80956f-7ce5-4f2e-a273-b1ca72654d9b',
     '09de9df66660ec7e361903022078e08d'
@@ -59,22 +42,45 @@ const convertToMarkdown = async (
     format: 'md',
   })
 
-  const convertedFile = await wordsApi
-    .convertDocument(convertRequest)
-    .then((convertRequestResult) => {
-      saveFile(
-        convertRequestResult.body,
-        author,
-        thumbnail,
-        title,
-        excerpt,
-        topic
-      )
-    })
-  // .catch((e) => res.send('THE ERROR ' + e))
+  const convertedFile = await wordsApi.convertDocument(convertRequest)
+
+  return {
+    file: convertedFile.body,
+    author: author,
+    title: title,
+    excerpt: excerpt,
+    topic: topic,
+  }
+
+  // .then((convertRequestResult) => {
+  // console.log(convertRequestResult.body)
+  // res.json({
+  //     file: convertRequestResult.body,
+  //     author: author,
+  //     title: title,
+  //     excerpt: excerpt,
+  //     topic: topic,
+  //   })
+  //   saveFile(
+  //       convertRequestResult.body,
+  //       author,
+  //       thumbnail,
+  //       title,
+  //       excerpt,
+  //       topic
+  //     )
+  // })
+
+  // return {
+  //   file: convertRequestResult.body,
+  //   author: author,
+  //   title: title,
+  //   excerpt: excerpt,
+  //   topic: topic,
+  // }
 }
 
-const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
+const saveFile = async (file, author, title, excerpt, topic) => {
   console.log('Saving File')
   fetch(
     process.env.NODE_ENV === 'development'
@@ -82,7 +88,7 @@ const saveFile = async (file, author, thumbnail, title, excerpt, topic) => {
       : 'https://academic-cms.vercel.app/api/addPost',
     {
       method: 'POST',
-      body: JSON.stringify({ file, author, thumbnail, title, excerpt, topic }),
+      body: JSON.stringify({ file, author, title, excerpt, topic }),
     }
   )
 }

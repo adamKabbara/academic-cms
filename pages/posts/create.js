@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import saveFile from '../../utils/saveFile'
 
 function Create() {
   const fileInput = useRef(null)
@@ -28,6 +29,24 @@ function Create() {
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:3000/api/convert'
         : 'https://academic-cms.vercel.app/api/convert',
+      {
+        method: 'POST',
+        body: data,
+      }
+    )
+      .then((res) => res.json())
+      .then((data) =>
+        saveFile(data.file, data.author, data.title, data.excerpt, data.topic)
+      )
+
+    const imageData = new FormData()
+    imageData.append('image', thumbnail)
+    imageData.append('title', titleInput.current.value)
+
+    fetch(
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/api/postImage'
+        : 'https://academic-cms.vercel.app/api/postImage',
       {
         method: 'POST',
         body: data,
