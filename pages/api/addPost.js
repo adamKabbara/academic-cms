@@ -30,6 +30,7 @@ export default function addPost(req, res) {
 
   if (req.method === 'POST') {
     addPost()
+    res.status(201).end()
   } else {
     res.status(405).end() // Return 405 Method Not Allowed for other methods
   }
