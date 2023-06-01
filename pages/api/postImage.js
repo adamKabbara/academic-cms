@@ -14,13 +14,11 @@ export default async function getPosts(req, res) {
 
   form.parse(req, async function (err, fields, files) {
     let thumbnailBody = await fs.readFileSync(files.thumbnail.filepath)
+    thumbnailBody = thumbnailBody.toString('base64')
 
-    thumbnailBody = await Buffer.from(thumbnailBody.toString('base64'))
-    console.log(thumbnailBody)
     const result = await postImages(
       thumbnailBody,
-      'randomfile' + '.jpg'
-      // fields.title.replace(/\s/g, '') + '.jpg'
+      fields.title.replace(/\s/g, '') + '.jpg'
     )
 
     console.log(result.json((res) => res).then((data) => console.log(data)))
