@@ -25,7 +25,7 @@ function Create() {
     data.append('title', titleInput.current.value)
     data.append('topic', topicInput.current.value)
 
-    await fetch(
+    const info = await fetch(
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:3000/api/convert'
         : 'https://academic-cms.vercel.app/api/convert',
@@ -34,24 +34,22 @@ function Create() {
         body: data,
       }
     )
-      .then((res) => res.json())
-      .then((data) =>
-        saveFile(data.file, data.author, data.title, data.excerpt, data.topic)
-      )
+
+    await saveFile(info.file, info.author, info.title, info.excerpt, info.topic)
 
     const imageData = new FormData()
     imageData.append('image', thumbnail)
     imageData.append('title', titleInput.current.value)
 
-    // await fetch(
-    //   process.env.NODE_ENV === 'development'
-    //     ? 'http://localhost:3000/api/postImage'
-    //     : 'https://academic-cms.vercel.app/api/postImage',
-    //   {
-    //     method: 'POST',
-    //     body: data,
-    //   }
-    // )
+    await fetch(
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/api/postImage'
+        : 'https://academic-cms.vercel.app/api/postImage',
+      {
+        method: 'POST',
+        body: data,
+      }
+    )
   }
 
   return (
