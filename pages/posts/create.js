@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import saveFile from '../../utils/saveFile'
 
-async function Create() {
+function Create() {
   const fileInput = useRef(null)
   const thumbnailInput = useRef(null)
   const firstNameInput = useRef('')
