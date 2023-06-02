@@ -29,6 +29,7 @@ export default function PostPage({
   slug,
   content,
   recommended,
+  author,
 }) {
   const { isAuthenticated } = useAuth0()
   const contentDiv = useRef('')
@@ -76,7 +77,9 @@ anxia cognoscere quid _est nosterque_ tamen.
         <h1 className="text-4xl" id="post-title">
           {title}
         </h1>
+
         <div className=" leading-9 text-slate-500 text-lg">Created {date}</div>
+        <div className=" leading-9 text-slate-500 text-lg">{author}</div>
 
         <div className="flex flex-col items-end">
           <p className="mb-2 block text-slate-400">Share Research:</p>
@@ -223,8 +226,7 @@ export async function getStaticProps({ params: { slug } }) {
     el.frontmatter.date = el.date
     el.frontmatter.excerpt = el.excerpt
   })
-
-  console.log(recommended)
+  const author = post.author
 
   const { data: frontmatter, content } = matter(
     createMeta(
@@ -234,7 +236,8 @@ export async function getStaticProps({ params: { slug } }) {
         ? ''
         : thumbnail[slug.replace(/\s/g, '')],
       post.excerpt,
-      post.file
+      post.file,
+      post.author
     )
   )
 
@@ -244,6 +247,7 @@ export async function getStaticProps({ params: { slug } }) {
       slug,
       content,
       recommended,
+      author,
     },
     revalidate: 1,
   }
