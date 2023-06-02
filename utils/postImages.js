@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import fetch from 'node-fetch'
 
 const FormData = require('form-data')
 const postImages = async (fileBuffer, fileName) => {
@@ -16,7 +17,7 @@ const postImages = async (fileBuffer, fileName) => {
   data.append('file', fileBuffer)
   data.append('fileName', fileName)
 
-  const res = await fetch(`https://api.imagekit.io/v1/files/upload`, {
+  const res = await fetch(`https://upload.imagekit.io/api/v1/files/upload`, {
     headers: headers,
     method: 'POST',
     body: data,
