@@ -9,6 +9,7 @@ function Create() {
   const titleInput = useRef('')
   const excerptInput = useRef('')
   const topicInput = useRef('')
+  const submitRef = useRef('')
 
   const uploadFile = async () => {
     const file = fileInput.current.files[0]
@@ -34,6 +35,7 @@ function Create() {
         body: data,
       }
     ).then((res) => res.json())
+
     await saveFile(info.file, info.author, info.title, info.excerpt, info.topic)
 
     const imageData = new FormData()
@@ -58,6 +60,9 @@ function Create() {
         className="w-1/2 max-w-260 max-sm:w-full max-md:w-2/3"
         onSubmit={async (e) => {
           e.preventDefault()
+          submitRef.current.style.background = 'grey'
+          submitRef.current.disabled = true
+
           await uploadFile()
           window.location.replace('http://localhost:3000/')
         }}
@@ -193,6 +198,7 @@ function Create() {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
+            ref={submitRef}
           >
             Submit
           </button>

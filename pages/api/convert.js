@@ -22,10 +22,8 @@ export default async function convert(req, res) {
         fields.topic
       )
 
-      res.status('201')
+      res.status('201').json(data)
     })
-  } else {
-    res.status(200)
   }
 }
 
