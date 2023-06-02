@@ -13,7 +13,7 @@ export default async function addPost(req, res) {
       file: fileBuffer.toString(),
       author: body.author,
       topic: body.topic,
-      date: new Date().toLocaleDateString(),
+      date: new Date().toLocaleDateString('en-AU'),
       excerpt: body.excerpt,
       title: body.title,
     }

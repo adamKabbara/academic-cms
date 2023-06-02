@@ -11,6 +11,14 @@ import fetchFiles from '../utils/fetchFiles'
 export default function Home({ posts }) {
   const [isCollapsed, setIsCollapsed] = useState(true)
 
+  posts = posts.sort(
+    (a, b) =>
+      new Date(a.frontmatter.date.split('/').reverse().join('/')) -
+      new Date(b.frontmatter.date.split('/').reverse().join('/'))
+  )
+
+  posts.forEach((post) => console.log(post.frontmatter.date))
+
   return (
     <div>
       <div id="main-content" className="">
