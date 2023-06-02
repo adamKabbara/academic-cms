@@ -245,6 +245,6 @@ export async function getStaticProps({ params: { slug } }) {
       content,
       recommended,
     },
-    revalidate: 10,
+    revalidate: 1,
   }
 }
