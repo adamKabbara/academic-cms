@@ -22,7 +22,7 @@ export default async function convert(req, res) {
         fields.topic
       )
 
-      res.status('201').json(data)
+      res.status('201')
     })
   } else {
     res.status(200)

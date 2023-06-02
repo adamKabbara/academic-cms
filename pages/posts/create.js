@@ -56,9 +56,10 @@ function Create() {
       <h1 className="text-xl pb-10 font-semibold ">Create Post</h1>
       <form
         className="w-1/2 max-w-260 max-sm:w-full max-md:w-2/3"
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault()
-          uploadFile()
+          await uploadFile()
+          window.location.replace('http://localhost:3000/')
         }}
       >
         <div className="w-full px-3 mb-6 md:mb-0">
@@ -192,6 +193,10 @@ function Create() {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
+            onClick={(e) => {
+              e.target.disabled = true
+              e.target.style.background = 'grey'
+            }}
           >
             Submit
           </button>
