@@ -4,10 +4,7 @@ import fetch from 'node-fetch'
 const FormData = require('form-data')
 const postImages = async (fileBuffer, fileName) => {
   const headers = new Headers()
-  headers.append(
-    'Authorization',
-    'Basic cHJpdmF0ZV9FZW5qVnhnMUw5MWRZRW1UdTY2SzY3K3M1Rm89Og=='
-  )
+  headers.append('Authorization', 'Basic ' + process.env.IMAGEKIT_AUTH)
   headers.append('Connection', 'keep-alive')
   headers.append('Accept', '*/*')
   headers.append('Accept-Encoding', 'gzip, deflate, br')

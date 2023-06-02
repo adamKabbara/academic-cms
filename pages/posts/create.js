@@ -33,8 +33,7 @@ function Create() {
         method: 'POST',
         body: data,
       }
-    )
-
+    ).then((res) => res.json())
     await saveFile(info.file, info.author, info.title, info.excerpt, info.topic)
 
     const imageData = new FormData()

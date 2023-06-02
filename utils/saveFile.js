@@ -6,7 +6,13 @@ const saveFile = async (file, author, title, excerpt, topic) => {
       : 'https://academic-cms.vercel.app/api/addPost',
     {
       method: 'POST',
-      body: JSON.stringify({ file, author, title, excerpt, topic }),
+      body: JSON.stringify({
+        file: file,
+        author: author,
+        title: title,
+        excerpt: excerpt,
+        topic: topic,
+      }),
     }
   )
 }

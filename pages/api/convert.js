@@ -30,10 +30,7 @@ export default async function convert(req, res) {
 }
 
 const convertToMarkdown = async (file, author, title, excerpt, topic) => {
-  const wordsApi = new WordsApi(
-    'af80956f-7ce5-4f2e-a273-b1ca72654d9b',
-    '09de9df66660ec7e361903022078e08d'
-  )
+  const wordsApi = new WordsApi(process.env.APOSE_KEY1, process.env.APOSE_KEY2)
 
   const requestDocument = fs.readFileSync(file.filepath)
 
